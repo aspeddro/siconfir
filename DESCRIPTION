@@ -1,0 +1,25 @@
+Package: siconfir
+Type: Package
+Title: Access data from the Brazilian Public Sector Accounting and Tax Information System (Siconfi/National Treasury)
+Version: 0.1.0
+Author: Pedro Castro
+Maintainer: Pedro Castro <pdesacastro@gmail.com>
+Description: Access data from fiscal reports, annual accounts, 
+  budget statements, statements by authority/agency
+License: MIT
+URL: https://github.com/pedrocastroo/siconfir
+BugReports: https://github.com/pedrocastroo/siconfir/issues
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.1
+Imports: 
+  RCurl, 
+  jsonlite, 
+  tibble,
+  tidyr,
+  dplyr,
+  magrittr,
+  purrr,
+  utils
+Depends: 
+    R (>= 2.10)
