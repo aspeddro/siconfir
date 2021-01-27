@@ -4,9 +4,9 @@
 #' @note
 #' Brazilian Public Sector Accounting and Tax Information System (Siconfi):
 #' http://apidatalake.tesouro.gov.br/docs/siconfi/
-#' @import RCurl
-#' @import tibble
-#' @import jsonlite
+#' @importFrom RCurl getURL
+#' @importFrom jsonlite fromJSON validate
+#' @importFrom tibble as_tibble
 #' @export
 
 get_entes <- function() {

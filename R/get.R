@@ -1,8 +1,6 @@
-#' @import tibble
-#' @import tidyr
-#' @import dplyr
-#' @import purrr
-#' @import magrittr
+#' @importFrom tidyr as_tibble unnest expand_grid
+#' @importFrom dplyr transmute
+#' @importFrom purrr map_lgl pmap
 
 get <- function(type, ...) {
   rest <- list(...)
@@ -16,5 +14,5 @@ get <- function(type, ...) {
         ~ with(list(...), req(type = type, query = list(...)))
       )
     ) %>%
-    tidyr::unnest(cols = data)
+    tidyr::unnest(cols = "data")
 }

@@ -1,6 +1,15 @@
 siconfir
 ================
 
+<!-- badges: start -->
+
+[![Lifecycle:
+maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
+![GitHub](https://img.shields.io/github/license/pedrocastroo/siconfir.svg)
+![GitHub
+release](https://img.shields.io/github/v/release/pedrocastroo/siconfir.svg?include_prereleases)
+<!-- badges: end -->
+
 `siconfir` é um pacote `R` para acessar dados do Sistema de Informações
 Contábeis e Tributárias do Setor Público Brasileiro (Siconfi/Tesouro
 Nacional). Relatórios fiscais, relatórios de execução orçamentária,
@@ -18,18 +27,6 @@ devtools::install_github("pedrocastroo/siconfir")
 ``` r
 library(siconfir)
 ```
-
-    ## Warning: replacing previous import 'magrittr::set_names' by 'purrr::set_names'
-    ## when loading 'siconfir'
-
-    ## Warning: replacing previous import 'jsonlite::flatten' by 'purrr::flatten' when
-    ## loading 'siconfir'
-
-    ## Warning: replacing previous import 'RCurl::complete' by 'tidyr::complete' when
-    ## loading 'siconfir'
-
-    ## Warning: replacing previous import 'magrittr::extract' by 'tidyr::extract' when
-    ## loading 'siconfir'
 
 O pacote fornece cinco funções:
 
@@ -434,7 +431,10 @@ A API permite apenas uma requisição por segundo
 
 ## TODO
 
--   [ ] `README.md` english
+-   [ ] `README` english
+-   [ ] Add Matriz de Saldos Contábeis - contas patrimoniais
+-   [ ] Add Matriz de Saldos Contábeis - contas orçamentárias
+-   [ ] Add Matriz de Saldos Contábeis - contas de controle
 -   [ ] Melhorar a documentação
 
 ## Contribuições

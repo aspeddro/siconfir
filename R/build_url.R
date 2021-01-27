@@ -1,8 +1,6 @@
-#' @import purrr
-#' @import magrittr
+#' @importFrom purrr map
 
 build_url <- function(type, query) {
-  purrr::map(names(query), ~ paste0(., "=", query[[.]])) %>%
-  paste(., collapse = "&") %>%
-  paste0(api(type), .)
+  params <- purrr::map(names(query), function(n) paste0(n, "=", query[[n]]))
+  paste0(api(type), paste(params, collapse = "&"))
 }

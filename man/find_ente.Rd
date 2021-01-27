@@ -4,8 +4,7 @@
 \alias{find_ente}
 \title{find city or state information}
 \usage{
-find_ente("rio de janeiro")
-find_ente("bahia", v = T)
+find_ente(query = NULL, v = FALSE)
 }
 \arguments{
 \item{query}{is a character}
@@ -17,4 +16,8 @@ find_ente("bahia", v = T)
 }
 \description{
 find city or state information
+}
+\examples{
+find_ente("rio de janeiro")
+find_ente("bahia")
 }

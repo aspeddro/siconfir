@@ -1,7 +1,6 @@
-#' @import utils
-#' @import RCurl
-#' @import jsonlite
-#' @import purrr
+#' @importFrom RCurl getURL
+#' @importFrom jsonlite validate fromJSON
+#' @importFrom purrr map
 
 req <- function(type, query) {
   msm_alert <- function(...) {

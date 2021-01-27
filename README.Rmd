@@ -6,6 +6,11 @@ output: github_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+<!-- badges: start -->
+[![Lifecycle: maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
+![GitHub](https://img.shields.io/github/license/pedrocastroo/siconfir.svg)
+![GitHub release](https://img.shields.io/github/v/release/pedrocastroo/siconfir.svg?include_prereleases)
+<!-- badges: end -->
 
 `siconfir` é um pacote `R` para acessar dados do Sistema de Informações Contábeis e Tributárias do Setor Público Brasileiro (Siconfi/Tesouro Nacional). Relatórios fiscais, relatórios de execução orçamentária, balanços e declaração de contas anuais.
 
@@ -256,7 +261,10 @@ A API permite apenas uma requisição por segundo
 
 ## TODO
 
-- [ ] `README.md` english
+- [ ] `README` english
+- [ ] Add Matriz de Saldos Contábeis - contas patrimoniais
+- [ ] Add Matriz de Saldos Contábeis - contas orçamentárias
+- [ ] Add Matriz de Saldos Contábeis - contas de controle
 - [ ] Melhorar a documentação
 
 ## Contribuições

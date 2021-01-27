@@ -1,2 +1,9 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
+^utils$
+^Makefile$
+^\.editorconfig$
+^README\.md$
+^docs$
+^LICENSE\.md$
+^README\.Rmd$

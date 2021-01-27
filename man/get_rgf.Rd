@@ -54,5 +54,5 @@ http://apidatalake.tesouro.gov.br/docs/siconfi/
 \examples{
 get_rgf(year = 2020, period = 1, id = 17)
 get_rgf(year = 2019, period = 1:3, id = 35, power = "E")
-get_rgf(year = 2017, period = 2, annex = 1, power = c("E", "L", "J"))
+get_rgf(year = 2017, period = 2, annex = 1, power = c("E", "L"), id = 35)
 }

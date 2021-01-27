@@ -1,16 +1,14 @@
-RSCRIPT ?= Rscript
-R = $(RSCRIPT) --slave
+R = Rscript
 
-.PHONY: all
-
-R_FILES := $(shell find R/)
-
-NAMESPACE: $(R_FILES)
+namespace:
 	$(R) -e 'devtools::document()'
 
-README:
+readme:
 	$(R) -e 'library(rmarkdown); render("README.Rmd", output_format = "github_document")'
 	rm README.html
+
+check:
+	$(R) -e 'devtools::check()'
 
 datasets:
 	$(R) utils/build_dataset.R
@@ -18,3 +16,6 @@ datasets:
 install:
 	$(R) -e 'devtools::document()'
 	$(R) -e 'devtools::install()'
+
+remove:
+	$(R) -e 'remove.packages("siconfir")'
