@@ -1,7 +1,7 @@
 siconfir
 ================
 
-`sincofir` é um pacote `R` para acessar dados do Sistema de Informações
+`siconfir` é um pacote `R` para acessar dados do Sistema de Informações
 Contábeis e Tributárias do Setor Público Brasileiro (Siconfi/Tesouro
 Nacional). Relatórios fiscais, relatórios de execução orçamentária,
 balanços e declaração de contas anuais.
