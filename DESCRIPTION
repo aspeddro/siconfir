@@ -1,7 +1,7 @@
 Type: Package
 Package: siconfir
 Title: Access data from the Brazilian Public Sector
-Version: 0.1.1
+Version: 0.1.2
 Authors@R:
     c(person("Castro", "Pedro", email = "pdesacastro@gmail.com",
             role = c("aut", "cre")))
