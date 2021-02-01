@@ -5,7 +5,6 @@ siconfir
 
 [![Lifecycle:
 maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
-![GitHub](https://img.shields.io/github/license/pedrocastroo/siconfir.svg)
 ![GitHub
 release](https://img.shields.io/github/v/release/pedrocastroo/siconfir.svg?include_prereleases)
 <!-- badges: end -->
@@ -32,7 +31,7 @@ O pacote fornece cinco funções:
 
 -   `get_rreo()`: Relatório Resumido de Execução Orçamentária (RREO)
 -   `get_rgf()`: Relatório de Gestão Fiscal (RGF)
--   `get_dca()`: Declaração de Contas Anuaus (DCA)
+-   `get_dca()`: Declaração de Contas Anuais (DCA)
 -   `get_entes()`: Informações básicas de todos os entes da federação
 -   `find_ente()`: Busca informação pelo nome do ente
 
@@ -256,7 +255,7 @@ Argumentos:
     > `numeric vector`
 
 ``` r
-# acessando Declaração de contas anuias do Tocantins de 2019
+# acessando Declaração de contas anuais do Tocantins de 2019
 get_dca(year = 2019, id = 17)
 ```
 
@@ -318,7 +317,7 @@ seguintes colunas:
 
 -   `populacao`: população do Município ou Estado/DF
 
-    > ⚠️ Somente a populaçao de Brasília (5300108) e União (1) diverge
+    > ⚠️ Somente a população de Brasília (5300108) e União (1) diverge
     > da estimativa oficial de 2020 feita pelo IBGE. Requer uma
     > verificação
 
@@ -347,8 +346,7 @@ get_entes()
 
 ### `entes_br` dataset
 
-`entes_br` é um dataset local semelhante a função `get_entes()` mas com
-algumas alterações, veja
+`entes_br` é um dataset local com algumas correções, veja
 [`utils/build_dataset.R`](utils/build_dataset.R)
 
 <details>
@@ -443,5 +441,5 @@ A API permite apenas uma requisição por segundo
     [issue](https://github.com/pedrocastroo/siconfir/issues) detalhando
     o problema/sugestão, seja o mais reprodutível possível.
 
--   Implementação: se você deseja implementar uma função ou melhorar,
-    abra uma pull.
+-   Implementação: se você deseja implementar uma função ou melhorar
+    algo, abra uma pull.
