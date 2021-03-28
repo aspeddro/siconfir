@@ -1,5 +1,7 @@
 .vscode/
 docs/
+test/
+*.html
 
 # History files
 .Rhistory

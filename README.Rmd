@@ -6,268 +6,138 @@ output: github_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-<!-- badges: start -->
-[![Lifecycle: maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
-![GitHub release](https://img.shields.io/github/v/release/pedrocastroo/siconfir.svg?include_prereleases)
-<!-- badges: end -->
 
-`siconfir` é um pacote `R` para acessar dados do Sistema de Informações Contábeis e Tributárias do Setor Público Brasileiro (Siconfi/Tesouro Nacional). Relatórios fiscais, relatórios de execução orçamentária, balanços e declaração de contas anuais.
+[README 🇧🇷](README_pt-br.md)
 
-## Instalação
+R library to access data from the Brazilian Public Sector Accounting and Tax Information System (SICONFI/[National Treasure](https://www.gov.br/tesouronacional/en?set_language=en))
 
-```{r eval=F}
+This package is available for [**Python**](https://github.com/pedrocastroo/siconfipy)
+
+## Installation
+
+```{r eval = F}
 # install.packages("devtools")
 devtools::install_github("pedrocastroo/siconfir")
+remotes::install_github("pedrocastroo/siconfir") # using remotes package
 ```
 
-## Uso
+## Using
+
+- [get_fiscal()](#get_fiscal): Fiscal Management Report
+- [get_budget()](#get_budget): Budget Execution Summary Report
+- [get_annual_acc()](#get_annual_acc): Annual Statement of Accounts
+- [msc_budget()](#msc_budget): Budget accounts, Accounting Balances Matrix
+- [msc_control()](#msc_control): Control accounts, Accounting Balances Matrix
+- [msc_equity()](#msc_equity): Equity accounts, Accounting Balances Matrix
+- [report_status()](#report_status): Report Status
+- [get_annex()](#get_annex): Attachments of reports by Sphere of Government
+- [get_info()](#get_info): Basic information of the federation entities
+- [find_cod()](#find_cod): Find state or municipality information
+
+Datasets:
+
+- [`br_cods`](#br_cods)
+
+## Examples
 
 ```{r}
 library(siconfir)
 ```
 
-O pacote fornece cinco funções:
+### get_fiscal(){#get_fiscal}
 
-* `get_rreo()`: Relatório Resumido de Execução Orçamentária (RREO)
-* `get_rgf()`: Relatório de Gestão Fiscal (RGF)
-* `get_dca()`: Declaração de Contas Anuais (DCA)
-* `get_entes()`: Informações básicas de todos os entes da federação
-* `find_ente()`: Busca informação pelo nome do ente
-
-### `get_rreo`
-
-Relatório Resumido de Execução Orçamentária (RREO)
-
-Argumentos:
-
-* `year`: ano
-
-  > `numeric vector`
-
-* `period`: bimestre de referência do relatório dentro de um exercício.
-
-  > `numeric vector`
-
-* `simple`: especifica o tipo do relatório (RREO), `TRUE` aplica-se apenas aos municípios com menos de 50 mil habitantes que optaram pela publicação simplificada.
-
-  > `logical` | Padrão é `TRUE`
-
-* `annex`: nome do anexo no demonstrativo
-
-  > `character vector` | Padrão é `NULL`
-
-  Se nenhum valor for fornecido todos os anexos disponíveis serão retornados
-  
-  Valores possíveis: `"01", "02", "03", "04", "04 - RGPS", "04 - RPPS", "04.0 - RGPS", "04.1", "04.2", "04.3 - RGPS", "05", "06", "07", "09", "10 - RGPS", "10 - RPPS", "11", "13", "14"`
-
-* `id`: código IBGE do ente
-
-  > `numeric vector`
+Fiscal management report for the state of Sao Paulo (`35`) for the first two months of 2020:
 
 ```{r}
-# acessando RREO do 4 bimestre de 2020 do Estado de São Paulo
-get_rreo(year = 2020, period = 4, id = 35)
+siconfir::get_fiscal(year = 2020, period = 1, cod = 35)
 ```
 
-<details>
-<summary>Mais Exemplos</summary>
-```r
-# acessando o anexo "01" do RREO da cidade de São Paulo
-get_rreo(year = 2019, period = 4, annex = "01", id = 3550308)
+> `cod` is an id assigned to each city and state. See `find_cod()`, `get_info()` or `br_cods`
 
-# acessando o anexo "01" do RREO do 4ªbimestre de 2020 e 2019 da cidade de SP
-get_rreo(year = 2019:2020, period = 4, anexo = "01", id = 3550308)
+### get_budget(){#get_budget}
 
-# acessando todos os bimestres de 2019 do RREO do DF
-get_rreo(year = 2019, period = 1:6, id = 53)
-
-# acsessando RREO de Serra da Saudade - MG, município com população estimada (2020) em 776 pessoas
-get_rreo(year = 2020, simple = TRUE, period = 1, id = 3166600)
-```
-</details>
-
-### `get_rgf`
-
-Relatório de Gestão Fiscal (RGF)
-
-Argumentos:
-
-* `year`: ano
-
-  > `numeric vector`
-  
-* `freq`: periodicidade da publicação do relatório, `"S"` (semestral) ou `"Q"` (quadrimestral). A periodicidade semestral aplica-se apenas aos municípios com menos de 50 mil habitantes que optaram pela publicação simplificada.
-
-  > `character` | Padrão é `"Q"`
-  
-* `period`: quadrimestre ou semestre de referência do relatório dentro de um exercício.
-
-  > `numeric vector`
-
-* `annex`: número do anexo
-
-  > `numeric vector` | Padrão é `NULL`
-  
-  Valores possíveis: `1, 2, 3, 4, 5, 6`
-
-  Se nenhum valor for fornecido todos os anexos disponíveis serão retornados
-  
-* `power`: abreviação do poder/orgão. Executivo `"E"`, Legislativo `"L"`, Judiciário `"J"`, Ministério Público `"M"` e Defensoria Pública `"D"`
-
-  > `character vector` | Padrão é `c("E", "L", "J", "M", "D")`
-  
-  Se nenhum valor for passado a função retorna dados para todos os poderes/orgãos disponíveis.
-
-* `id`: código IBGE do ente
-
-  > `numeric vector`
+Summary of the budget execution report for the state of Rio de Janeiro (`33`) of 2018 for the first two months:
 
 ```{r}
-# acessando RGF do 2 quadrimestre de 2020 do Estado de Sergipe (todos os poderes inclusos)
-get_rgf(year = 2020, period = 2, id = 28)
+siconfir::get_budget(year = 2018, period = 1, cod = 33)
 ```
+
+### get_annual_acc(){#get_annual_acc}
+
+Annual accounts statement of the Federal District (`53`) for 2018:
 
 ```{r}
-# acessando RGF do 3 quadrimestre de 2018 da cidade de Palmas-TO, apenas RGF do executivo, legislativo e judiciário
-get_rgf(year = 2018, period = 3, id = 1721000, power = c("E", "L", "J"))
+siconfir::get_annual_acc(year = 2018, cod = 53)
 ```
 
-<sub>⚠️ Palmas - TO não possui dados do RGF para o poder `"J"`</sub>
+### msc_budget(){#msc_budget}
 
-<details>
-<summary>Mais Exemplos</summary>
-```r
-# acessando RGF do primeiro semestre de 2015 de Bocaina-SP, cidade com população estimada (2020) igual a 12452
-get_rgf(year = 2015, freq = "S", period = 1, id = 3506805)
-
-# acessando RGF da União de 2019 para todos os quadrimestre e poderes, apenas o anexo 1 (Demonstrativo da Despesas com Pessoal)
-get_rgf(year = 2019, period = 1:3, annex = 1, id = 1)
-```
-</details>
-
-### `get_dca`
-
-Declaração de Contas Anuais (DCA)
-
-Argumentos:
-
-* `year`: ano
-
-  > `numeric vector`
-
-* `annex`: nome do anexo
-
-  > `character vector`
-  
-  Valores possíveis: `"Anexo I-AB", "Anexo I-C", "Anexo I-D", "Anexo I-E", "Anexo I-F", "Anexo I-G", "Anexo I-HI", "DCA-Anexo I-AB", "DCA-Anexo I-C", "DCA-Anexo I-D", "DCA-Anexo I-E", "DCA-Anexo I-F", "DCA-Anexo I-G", "DCA-Anexo I-HI"`
-
-  Se nenhum valor for fornecido todos os anexos disponíveis serão retornados
-  
-  > ⚠️ As contas do exercício de 2013 foram entregues em dois formatos: QDCC para entes que não haviam aderido ao PCASP e DCA para todos os demais. Assim apenas os anexos que possuem o prefixo DCA são referentes a esse relatório, os demais anexos referem-se aos dados do QDCC de 2013. [Siconfi Docs API](http://apidatalake.tesouro.gov.br/docs/siconfi/#/DCA)
-
-* `id`: código IBGE do ente
-
-  > `numeric vector`
-  
-```{r}
-# acessando Declaração de contas anuais do Tocantins de 2019
-get_dca(year = 2019, id = 17)
-```
-
-<details>
-<summary>Mais Exemplos</summary>
-```r
-# acessando DCA de 2017 a 2019 da União
-get_dca(year = 2017:2019, id = 1)
-
-# acessando DCA de 2015 do Estado do Amazonas
-get_dca(year = 2015, id = 13)
-```
-</details>
-
-### `get_entes`
-
-Informações de todos os entes da Federação
-
-A função não possui argumentos. Ela retorna uma `tibble` com as seguintes colunas:
-
-* `cod_ibge`: código de identificação do ente
-
-* `ente`: nome do ente
-
-* `capital`: um valor binário, se `1` então o ente é capital do Estado.
-
-  > ⚠️ `capital` é do tipo `character`
-  
-* `regiao`: abreviação da região do ente. Centro-Oeste `"CO"`, Norte `"NO"`, Nordeste `"NE"`, Sudeste `"SU"` e `"BR"` para a União.
-
-* `uf`: abreviação da Unidade Federativa
-
-* `esfera`: esfera do ente. Estado `"E"`, Município `"M"`, Distrito `"D"` e União `"U"`
-
-* `exercicio`: ano da requisição
-
-* `populacao`: população do Município ou Estado/DF
-
-  > ⚠️ Somente a população de Brasília (5300108) e União (1) diverge da estimativa oficial de 2020 feita pelo IBGE. Requer uma verificação
-
-* `cnpj`: CNPJ do ente
-  
-  > Requer uma verificação
+Budget accounts, Accounting Balances Matrix:
 
 ```{r}
-get_entes()
+siconfir::msc_budget(year = 2020, month = 1, cod = 1, matrix_type = "MSCC", class = 5, value = "period_change")
 ```
 
-### `entes_br` dataset
+### msc_control(){#msc_control}
 
-`entes_br` é um dataset local com algumas correções, veja [`utils/build_dataset.R`](utils/build_dataset.R)
-
-<details>
-<summary>Mais Exemplos</summary>
-```{r}
-library(dplyr, warn.conflicts = F)
-# somente as capitais
-entes_br %>% 
-  filter(capital == 1)
-```
+Control accounts, Accounting Balances Matrix:
 
 ```{r}
-# pegando somente as cidades do Tocantins com populaçao > 50000
-entes_br %>% 
-  filter(uf == "TO", populacao > 50000)
+siconfir::msc_control(year = 2020, month = 6, cod = 17, matrix_type = "MSCC", class = 7, value = "ending_balance")
 ```
-</details>
 
-### `find_ente`
+### msc_equity(){#msc_equity}
 
-Busca informações pelo nome do ente
-
-Argumentos:
-
-* `v`: abre o visualizador de dados
-
-  > `logical` | Padrão é `FALSE`
+Equity accounts, Accounting Balances Matrix:
 
 ```{r}
-# procurando municípios e estados com a palavra joão
-find_ente("joão")
+siconfir::msc_equity(year = 2020, month = 12, cod = 1, matrix_type = "MSCE", class = 1, value = "beginning_balance") # cod = 1 is id of Brazil
 ```
 
-## Limitações
+### report_status(){#report_status}
 
-A API permite apenas uma requisição por segundo
+Information on approved and corrected reports as well as matrices delivered to SICONFI:
 
-## TODO
+```{r}
+siconfir::report_status(year = 2020, cod = 43)
+```
 
-- [ ] `README` english
-- [ ] Add Matriz de Saldos Contábeis - contas patrimoniais
-- [ ] Add Matriz de Saldos Contábeis - contas orçamentárias
-- [ ] Add Matriz de Saldos Contábeis - contas de controle
-- [ ] Melhorar a documentação
+### get_annex(){#get_annex}
 
-## Contribuições
+Attachments of reports by Sphere of Government:
 
-* Bugs ou sugestões: abra uma [issue](https://github.com/pedrocastroo/siconfir/issues) detalhando o problema/sugestão, seja o mais reprodutível possível.
+```{r}
+siconfir::get_annex()
+```
 
-* Implementação: se você deseja implementar uma função ou melhorar algo, abra uma pull.
+### get_info(){#get_info}
+
+Acess basic information of the federation entities:
+
+```{r}
+siconfir::get_info()
+```
+
+### find_cod(){#find_cod}
+
+Find state or municipality information:
+
+```{r}
+siconfir::find_cod("distrito federal")
+```
+
+### br_cods{#br_cods}
+
+Basic information of Brazilian municipalities and states. `br_cods` provides results similar to `get_info()`, but with some corrections, see [`utils/build_datasets.R`](utils/build_datasets.R)
+
+```{r}
+siconfir::br_cods
+```
+
+## Contributing
+
+Bugs or suggestions: open an [issue](https://github.com/pedrocastroo/siconfir/issues) detailing the problem/suggestion, be as reproducible as possible.
+
+## License
+
+This project is released under the MIT License.

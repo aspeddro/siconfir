@@ -1,46 +1,46 @@
 siconfir
 ================
 
-[README 🇧🇷](README_pt-br.md)
+Pacote R para acessar dados Sistema de Informações Contábeis e
+Tributárias do Setor Público Brasileiro (SICONFI/[Tesouro
+Nacional](https://www.gov.br/tesouronacional/))
 
-R library to access data from the Brazilian Public Sector Accounting and
-Tax Information System (SICONFI/[National
-Treasure](https://www.gov.br/tesouronacional/en?set_language=en))
-
-This package is available for
+Esse pacote está disponível para
 [**Python**](https://github.com/pedrocastroo/siconfipy)
 
-## Installation
+## Instalação
 
 ``` r
 # install.packages("devtools")
 devtools::install_github("pedrocastroo/siconfir")
-remotes::install_github("pedrocastroo/siconfir") # using remotes package
+remotes::install_github("pedrocastroo/siconfir") # usando pacote remotes
 ```
 
-## Using
+## Usando
 
--   [get\_fiscal()](#get_fiscal): Fiscal Management Report
--   [get\_budget()](#get_budget): Budget Execution Summary Report
--   [get\_annual\_acc()](#get_annual_acc): Annual Statement of Accounts
--   [msc\_budget()](#msc_budget): Budget accounts, Accounting Balances
-    Matrix
--   [msc\_control()](#msc_control): Control accounts, Accounting
-    Balances Matrix
--   [msc\_equity()](#msc_equity): Equity accounts, Accounting Balances
-    Matrix
--   [report\_status()](#report_status): Report Status
--   [get\_annex()](#get_annex): Attachments of reports by Sphere of
-    Government
--   [get\_info()](#get_info): Basic information of the federation
-    entities
--   [find\_cod()](#find_cod): Find state or municipality information
+-   [get\_fiscal()](#get_fiscal): Relatório de Gestão Fiscal
+-   [get\_budget()](#get_budget): Relatório Resumido de Execução
+    Orçamentária
+-   [get\_annual\_acc()](#get_annual_acc): Declaração de Contas Anuais
+-   [msc\_budget()](#msc_budget): Contas orçamentária, matriz de saldos
+    contábeis
+-   [msc\_control()](#msc_control): Contas de controle, matriz de saldos
+    contábeis
+-   [msc\_equity()](#msc_equity): Contas patrimoniais, matriz de saldos
+    contábeis
+-   [report\_status()](#report_status): Extrato de relatórios
+    homologados e matrizes entregues
+-   [get\_annex()](#get_annex): Anexos de relatórios por esfera de
+    Governo
+-   [get\_info()](#get_info): Informações básicas dos entes da federação
+-   [find\_cod()](#find_cod): Encontra informações sobre o estado ou
+    município
 
 Datasets:
 
 -   [`br_cods`](#br_cods)
 
-## Examples
+## Examplos
 
 ``` r
 library(siconfir)
@@ -48,8 +48,8 @@ library(siconfir)
 
 ### get\_fiscal()
 
-Fiscal management report for the state of Sao Paulo (`35`) for the first
-two months of 2020:
+Relatório de Gestão Fiscal do estado de São Paulo (`35`) para o primeiro
+quadrimestre de 2020:
 
 ``` r
 siconfir::get_fiscal(year = 2020, period = 1, cod = 35)
@@ -71,13 +71,13 @@ siconfir::get_fiscal(year = 2020, period = 1, cod = 35)
     ## # … with 1,042 more rows, and 6 more variables: anexo <chr>, rotulo <chr>,
     ## #   coluna <chr>, cod_conta <chr>, conta <chr>, valor <dbl>
 
-> `cod` is an id assigned to each city and state. See `find_cod()`,
-> `get_info()` or `br_cods`
+> `cod` é um id atribuído para cada cidade e estado. Veja `find_cod()`,
+> `get_info()` ou `br_cods`
 
 ### get\_budget()
 
-Summary of the budget execution report for the state of Rio de Janeiro
-(`33`) of 2018 for the first two months:
+Relatório Resumido de Execução Orçamentária do estado de Rio de Janeiro
+(`33`) de 2018, primeiro bimestre:
 
 ``` r
 siconfir::get_budget(year = 2018, period = 1, cod = 33)
@@ -101,7 +101,7 @@ siconfir::get_budget(year = 2018, period = 1, cod = 33)
 
 ### get\_annual\_acc()
 
-Annual accounts statement of the Federal District (`53`) for 2018:
+Declaração de Contas Anuais do Distrito Federal (`53`) de 2018:
 
 ``` r
 siconfir::get_annual_acc(year = 2018, cod = 53)
@@ -124,7 +124,7 @@ siconfir::get_annual_acc(year = 2018, cod = 53)
 
 ### msc\_budget()
 
-Budget accounts, Accounting Balances Matrix:
+Contas orçamentária, matriz de saldos contábeis:
 
 ``` r
 siconfir::msc_budget(year = 2020, month = 1, cod = 1, matrix_type = "MSCC", class = 5, value = "period_change")
@@ -151,7 +151,7 @@ siconfir::msc_budget(year = 2020, month = 1, cod = 1, matrix_type = "MSCC", clas
 
 ### msc\_control()
 
-Control accounts, Accounting Balances Matrix:
+Contas controle, matriz de saldos contábeis:
 
 ``` r
 siconfir::msc_control(year = 2020, month = 6, cod = 17, matrix_type = "MSCC", class = 7, value = "ending_balance")
@@ -177,10 +177,10 @@ siconfir::msc_control(year = 2020, month = 6, cod = 17, matrix_type = "MSCC", cl
 
 ### msc\_equity()
 
-Equity accounts, Accounting Balances Matrix:
+Contas patrimoniais, matriz de saldos contábeis:
 
 ``` r
-siconfir::msc_equity(year = 2020, month = 12, cod = 1, matrix_type = "MSCE", class = 1, value = "beginning_balance") # cod = 1 is id of Brazil
+siconfir::msc_equity(year = 2020, month = 12, cod = 1, matrix_type = "MSCE", class = 1, value = "beginning_balance") # cod = 1 é o id do Brasil
 ```
 
     ## # A tibble: 3,721 x 15
@@ -203,8 +203,7 @@ siconfir::msc_equity(year = 2020, month = 12, cod = 1, matrix_type = "MSCE", cla
 
 ### report\_status()
 
-Information on approved and corrected reports as well as matrices
-delivered to SICONFI:
+Extrato de relatórios homologados e matrizes entregues ao SICONFI:
 
 ``` r
 siconfir::report_status(year = 2020, cod = 43)
@@ -228,7 +227,7 @@ siconfir::report_status(year = 2020, cod = 43)
 
 ### get\_annex()
 
-Attachments of reports by Sphere of Government:
+Anexos de relatórios por esfera de Governo:
 
 ``` r
 siconfir::get_annex()
@@ -251,7 +250,7 @@ siconfir::get_annex()
 
 ### get\_info()
 
-Acess basic information of the federation entities:
+Acessando informações básicas dos entes da federação:
 
 ``` r
 siconfir::get_info()
@@ -274,7 +273,7 @@ siconfir::get_info()
 
 ### find\_cod()
 
-Find state or municipality information:
+Encontra informações sobre o estado ou município:
 
 ``` r
 siconfir::find_cod("distrito federal")
@@ -287,9 +286,9 @@ siconfir::find_cod("distrito federal")
 
 ### br\_cods
 
-Basic information of Brazilian municipalities and states. `br_cods`
-provides results similar to `get_info()`, but with some corrections, see
-[`utils/build_datasets.R`](utils/build_datasets.R)
+Informações básicas de municípios e estados brasileiros. `br_cods`
+fornece resultados similiar a `get_info()`, mas com algumas correções,
+veja [`utils/build_datasets.R`](utils/build_datasets.R)
 
 ``` r
 siconfir::br_cods
@@ -310,12 +309,12 @@ siconfir::br_cods
     ## 10  1719004 Santa Terez…       0 NO     TO    M           2021      2897 250868…
     ## # … with 5,587 more rows
 
-## Contributing
+## Contribuindo
 
-Bugs or suggestions: open an
-[issue](https://github.com/pedrocastroo/siconfir/issues) detailing the
-problem/suggestion, be as reproducible as possible.
+Bugs ou sugestões: abra uma
+[issue](https://github.com/pedrocastroo/siconfir/issues) detalhando o
+problema/sugestão, seja o mais reprodutível.
 
-## License
+## Licensa
 
-This project is released under the MIT License.
+Este projeto está licensiado sob a licença do MIT

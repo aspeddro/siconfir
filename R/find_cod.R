@@ -1,18 +1,18 @@
-#' @title find city or state information
+#' @title Find state or municipality information
 #' @param query is a character
-#' @param v is a logical, \code{TRUE} open Data Viewer. Default is \code{FALSE}
+#' @param view is a logical, \code{TRUE} open Data Viewer. Default is \code{FALSE}
 #' @examples
-#' find_ente("rio de janeiro")
-#' find_ente("bahia")
+#' find_cod("rio de janeiro")
+#' find_cod("bahia")
 #' @return \code{tibble}
-#' @import dplyr
+#' @importFrom dplyr filter
 #' @importFrom purrr map
 #' @importFrom utils View
 #' @export
 
-find_ente <- function(query = NULL, v = FALSE) {
+find_cod <- function(query = NULL, view = FALSE) {
 
-  df <- siconfir::entes_br
+  df <- siconfir::br_cods
 
   if (!is.null(query) && !is.character(query) || length(query) > 1) {
     stop("Invalid type, use character")
@@ -24,7 +24,9 @@ find_ente <- function(query = NULL, v = FALSE) {
     stop("Empty query")
   }
   if (is.null(query)) {
-    if (v) utils::View(df)
+    if (view) {
+      utils::View(df)
+    }
     return(df)
   }
 
@@ -34,7 +36,7 @@ find_ente <- function(query = NULL, v = FALSE) {
   ) %>% unlist()
 
   df_results <- dplyr::filter(df, df$ente %in% unlist(results))
-  if (v) {
+  if (view) {
     View(df_results)
   }
   df_results
