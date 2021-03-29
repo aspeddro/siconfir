@@ -10,7 +10,7 @@
 #' execution summary report.
 #' @seealso \url{https://conteudo.tesouro.gov.br/manuais/index.php?option=com_content&view=article&id=1180:03-00-01-introducao&catid=601&Itemid=675}
 #' @param year is a numeric vector
-#' @param period is a numeric vector, bimonth of the year, an integer between
+#' @param period is a numeric vector, bimester of the year, an integer between
 #' 1 and 6
 #' @param cod is a numeric vector. Brazilian Institute of Geography and
 #' Statistics (IBGE) code assigned to each municipality and state.

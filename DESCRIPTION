@@ -1,7 +1,7 @@
 Type: Package
 Package: siconfir
-Title: Provides quick and easy access tax and accounting data of Brazilian states and municipalities
-Version: 1.0.0
+Title: Provides Quick and Easy Access Tax and Accounting Data of Brazilian States and Municipalities
+Version: 1.0.1
 Authors@R:
     c(person(given="Pedro",
             family="Castro", 
@@ -16,6 +16,7 @@ BugReports: https://github.com/pedrocastroo/siconfir/issues
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.1
+Language: en-US
 Imports:
     httr,
     tidyr,

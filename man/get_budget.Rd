@@ -9,7 +9,7 @@ get_budget(year, period, cod, simple = FALSE, annex = NULL, verbose = FALSE)
 \arguments{
 \item{year}{is a numeric vector}
 
-\item{period}{is a numeric vector, bimonth of the year, an integer between
+\item{period}{is a numeric vector, bimester of the year, an integer between
 1 and 6}
 
 \item{cod}{is a numeric vector. Brazilian Institute of Geography and
