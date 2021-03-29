@@ -318,6 +318,7 @@ siconfir::br_cods
 
 ## Resources
 
+-   [SICONFI API](http://apidatalake.tesouro.gov.br/docs/siconfi/)
 -   [Fiscal Statement Manual 9th Edition, National Treasure
     (pt-br)](https://conteudo.tesouro.gov.br/manuais/index.php?option=com_content&view=categories&id=560&Itemid=675)
 

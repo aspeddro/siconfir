@@ -74,8 +74,8 @@ siconfir::get_fiscal(year = 2020, period = 1, cod = 35)
 
 > `cod` é um id atribuído para cada cidade e estado. Veja [IBGE, Cidades
 > e
-> Estados](https://www.ibge.gov.br/cidades-e-estados.html?view=municipio)`find_cod()`,
-> `get_info()` ou `br_cods`
+> Estados](https://www.ibge.gov.br/cidades-e-estados.html?view=municipio),
+> `find_cod()`, `get_info()` ou `br_cods`
 
 ### get\_budget()
 
@@ -294,7 +294,7 @@ siconfir::find_cod("distrito federal")
 ### br\_cods
 
 Informações básicas de municípios e estados brasileiros. `br_cods`
-fornece resultados similiar a `get_info()`, mas com algumas correções,
+fornece resultados semelhante a `get_info()`, mas com algumas correções,
 veja [`utils/build_datasets.R`](utils/build_datasets.R)
 
 ``` r
@@ -318,6 +318,7 @@ siconfir::br_cods
 
 ## Recursos
 
+-   [SICONFI API](http://apidatalake.tesouro.gov.br/docs/siconfi/)
 -   [Manual de Demonstrativos Fiscais 9ª Edição, Tesouro
     Nacional](https://conteudo.tesouro.gov.br/manuais/index.php?option=com_content&view=categories&id=560&Itemid=675)
 
