@@ -1,42 +1,41 @@
-#' @title Budget accounts, Accounting Balances Matrix
-#' @description Details of the records reported in the accounting accounts that 
+#' @title Budget accounts, accounting balances matrix
+#' @description Details of the records reported in the accounting accounts that
 #' receive budget entries.
 #' @param year is a numeric vector
 #' @param month is a numeric vector
 #' @param cod is a numeric vector. Brazilian Institute of Geography and
 #' Statistics (IBGE) code assigned to each municipality and state.
-#' @param matrix_type is a character. Matrix type, monthly or aggregate 
+#' @param matrix_type is a character. Matrix type, monthly or aggregate
 #' \code{"MSCC"} or year-end \code{"MSCE"}
-#' @param class is a numeric vector, integer between 5 and 6. Class of accounting 
-#' accounts that receive entries of a budgetary nature.
-#' @param value is a character. The detailed values can be of three types: 
+#' @param class is a numeric vector, integer between 5 and 6. Class of
+#' accounting accounts that receive entries of a budgetary nature.
+#' @param value is a character. The detailed values can be of three types:
 #' opening balance \code{"beginning_balance"}, movement \code{"period_change"}
 #' or ending balance \code{"ending_balance"}
 #' @param verbose is a logical. Enable verbose mode. Default is \code{FALSE}
 #' @note
-#' Refers to the accounting accounts for approval of the approval (class 5) and 
-#' execution (class 6) of the planning and budget, as well as their respective 
+#' Refers to the accounting accounts for approval of the approval (class 5) and
+#' execution (class 6) of the planning and budget, as well as their respective
 #' complementary information
-#' @export 
+#' @export
 
 msc_budget <- function(year,
-                      month, 
-                      cod,
-                      matrix_type,
-                      class,
-                      value,
-                      verbose = FALSE) {
-  
+                       month,
+                       cod,
+                       matrix_type,
+                       class,
+                       value,
+                       verbose = FALSE) {
   if (!(matrix_type %in% c("MSCC", "MSCE"))) {
-    stop("Argument matrix_type should be 'MSCC' or 'MSCE'")
+    stop("Argument matrix_type must be 'MSCC' or 'MSCE'")
   }
 
   if (!(class %in% 5:6)) {
-    stop("Argument class should be 5 or 6")
+    stop("Argument class must be 5 or 6")
   }
 
   if (!(value %in% c("beginning_balance", "period_change", "ending_balance"))) {
-    stop("Argument matrix_type should be 'beginning_balance', 'period_change' or 'ending_balance'")
+    stop("Argument matrix_type must be 'beginning_balance', 'period_change' or 'ending_balance'")
   }
 
   get(

@@ -1,12 +1,15 @@
 Type: Package
 Package: siconfir
-Title: Access data from the Brazilian Public Sector
+Title: Provides quick and easy access tax and accounting data of Brazilian states and municipalities
 Version: 0.2.0
 Authors@R:
-    c(person("Castro", "Pedro", email = "pdesacastro@gmail.com",
+    c(person(given="Pedro",
+            family="Castro", 
+            email = "pdesacastro@gmail.com",
             role = c("aut", "cre")))
-Description: Access data from the Brazilian Public Sector annual accounts, 
-    budget statements, statements by authority and agency.
+Description: Access tax and accounting data of Brazilian states 
+    and municipalities provided by the Brazilian Public Sector 
+    Accounting and Tax Information System.
 License: MIT + file LICENSE
 URL: https://github.com/pedrocastroo/siconfir
 BugReports: https://github.com/pedrocastroo/siconfir/issues
@@ -22,4 +25,4 @@ Imports:
     purrr,
     utils
 Depends:
-    R (>= 2.10)
+    R (>= 3.2)

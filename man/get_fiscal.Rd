@@ -2,30 +2,33 @@
 % Please edit documentation in R/get_fiscal.R
 \name{get_fiscal}
 \alias{get_fiscal}
-\title{Fiscal Management Report}
+\title{Fiscal management report}
 \usage{
 get_fiscal(
   year,
-  freq = "Q",
   period,
+  cod,
+  freq = "Q",
   annex = NULL,
   power = c("E", "L", "J", "M", "D"),
-  cod,
   verbose = FALSE
 )
 }
 \arguments{
 \item{year}{is a numeric vector}
 
+\item{period}{is a numeric vector, period of the year, if the parameter
+\code{freq} is \code{"Q"} then it will be an integer between 1 and 3.
+If \code{freq} is \code{"S"} then it will be an integer between 1 and 2.}
+
+\item{cod}{is a numeric vector. Brazilian Institute of Geography and
+Statistics (IBGE) code assigned to each municipality and state.}
+
 \item{freq}{is a character, periodicity of publication of the report,
 \code{"S"} is semiannual, \code{"Q"} is four-month period. The semiannual
 periodicity (\code{"S"}) applies only to municipalities with less than 50
 thousand inhabitants that opted for simplified publication. Default is
 \code{"Q"}}
-
-\item{period}{is a numeric vector, period of the year, if the parameter
-\code{freq} is \code{"Q"} then it will be an integer between 1 and 3.
-If \code{freq} is \code{"S"} then it will be an integer between 1 and 2.}
 
 \item{annex}{is a numeric vector, an integer between 1 and 6.
 Default is \code{NULL}, it will get all attachments.}
@@ -35,27 +38,30 @@ executive \code{"E"}, legislative \code{"L"}, judiciary \code{"J"},
 public ministry \code{"M"}, Public defense \code{"D"}.
 Default is \code{c("E", "L", "J", "M", "D")}}
 
-\item{cod}{is a numeric vector. Brazilian Institute of Geography and
-Statistics (IBGE) code assigned to each municipality and state.}
-
 \item{verbose}{is a logical. Enable verbose mode. Default is \code{FALSE}}
 }
 \value{
 \code{tibble}
 }
 \description{
-Access the Fiscal Management Report
+The fiscal management report will contain comparative
+statements with the limits referred to in the fiscal responsibility law, of
+the following amounts: total personnel expenses, showing expenses with
+assets, inactive and pensioners, net consolidated debt, granting of
+guarantees and counter-guarantees and operation credit.
 }
 \details{
 For more details on the parameter \code{cod} see the column \code{cod_ibge}
-of the function \code{get_info()}
+of the function \code{\link{get_info}}
 }
 \note{
 Brazilian Public Sector Accounting and Tax Information System (Siconfi):
-http://apidatalake.tesouro.gov.br/docs/siconfi/
+\url{http://apidatalake.tesouro.gov.br/docs/siconfi/}
 }
 \examples{
-get_fiscal(year = 2020, period = 1, cod = 17)
 get_fiscal(year = 2019, period = 1:3, cod = 35, power = "E")
-get_fiscal(year = 2017, period = 2, annex = 1, power = c("E", "L"), cod = 35)
+get_fiscal(year = 2017, period = 2, annex = 1, power = "E", cod = 1)
+}
+\seealso{
+\url{https://conteudo.tesouro.gov.br/manuais/index.php?option=com_content&view=article&id=1344:04-00-01-01-conteudo-do-relatorio&catid=677&Itemid=675}
 }

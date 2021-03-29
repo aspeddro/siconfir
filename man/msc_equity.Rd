@@ -2,7 +2,7 @@
 % Please edit documentation in R/msc_equity.R
 \name{msc_equity}
 \alias{msc_equity}
-\title{Equity accounts, Accounting Balances Matrix}
+\title{Equity accounts, accounting balances matrix}
 \usage{
 msc_equity(year, month, cod, matrix_type, class, value, verbose = FALSE)
 }
@@ -14,23 +14,24 @@ msc_equity(year, month, cod, matrix_type, class, value, verbose = FALSE)
 \item{cod}{is a numeric vector. Brazilian Institute of Geography and
 Statistics (IBGE) code assigned to each municipality and state.}
 
-\item{matrix_type}{is a character. Matrix type, monthly or aggregate 
+\item{matrix_type}{is a character. Matrix type, monthly or aggregate
 \code{"MSCC"} or year-end \code{"MSCE"}}
 
-\item{class}{is a numeric vector, integer between 1 and 4. Class of accounting accounts that receive entries of an equity nature}
+\item{class}{is a numeric vector, integer between 1 and 4. Class of
+accounting accounts that receive entries of an equity nature}
 
-\item{value}{is a character. The detailed values can be of three types: 
+\item{value}{is a character. The detailed values can be of three types:
 opening balance \code{"beginning_balance"}, movement \code{"period_change"}
 or ending balance \code{"ending_balance"}}
 
 \item{verbose}{is a logical. Enable verbose mode. Default is \code{FALSE}}
 }
 \description{
-Details of the records informed in the accounting accounts that 
+Details of the records informed in the accounting accounts that
 receive entries of an equity nature.
 }
 \note{
-It refers to the accounting accounts for assets (class 1), liabilities 
-(class 2), diminishing equity variations (class 3) and augmenting equity 
+It refers to the accounting accounts for assets (class 1), liabilities
+(class 2), diminishing equity variations (class 3) and augmenting equity
 variations (class 4) as well as their respective complementary information.
 }

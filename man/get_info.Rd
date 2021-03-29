@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_info.R
 \name{get_info}
 \alias{get_info}
-\title{Basic information of the federation entities}
+\title{Basic information on Brazilian states and municipalities}
 \usage{
 get_info(verbose = FALSE)
 }
@@ -17,5 +17,5 @@ Get basic information about all the entities of the federation
 }
 \note{
 Brazilian Public Sector Accounting and Tax Information System (Siconfi):
-http://apidatalake.tesouro.gov.br/docs/siconfi/
+\url{http://apidatalake.tesouro.gov.br/docs/siconfi/}
 }

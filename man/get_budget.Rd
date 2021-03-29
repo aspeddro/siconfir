@@ -2,15 +2,18 @@
 % Please edit documentation in R/get_budget.R
 \name{get_budget}
 \alias{get_budget}
-\title{Budget Execution Summary Report}
+\title{Budget execution summary report}
 \usage{
-get_budget(year, period, simple = FALSE, annex = NULL, cod, verbose = FALSE)
+get_budget(year, period, cod, simple = FALSE, annex = NULL, verbose = FALSE)
 }
 \arguments{
 \item{year}{is a numeric vector}
 
 \item{period}{is a numeric vector, bimonth of the year, an integer between
 1 and 6}
+
+\item{cod}{is a numeric vector. Brazilian Institute of Geography and
+Statistics (IBGE) code assigned to each municipality and state.}
 
 \item{simple}{is a logical. \code{TRUE} applies only to municipalities with
 less than 50 thousand inhabitants that have opted for simplified publication.
@@ -19,16 +22,21 @@ Default is \code{FALSE}}
 \item{annex}{is a character vector. Default is \code{NULL},
 it will get all attachments.}
 
-\item{cod}{is a numeric vector. Brazilian Institute of Geography and
-Statistics (IBGE) code assigned to each municipality and state.}
-
 \item{verbose}{is a logical. Enable verbose mode. Default is \code{FALSE}}
 }
 \value{
 \code{tibble}
 }
 \description{
-Access the Budget Execution Summary Report
+The budget execution summary report will contain the
+following statements: budget balance sheet, statement of execution of
+expenses by function/subfunction; statement of current net revenue;
+statement of social security income and expenses; statement of primary and
+nominal results; statement of remains payable for power and agency; statement
+of income and expenses with maintenance and development of education;
+statement of income and expenses with public health actions and services;
+statement of public-private partnerships; simplified statement of the budget
+execution summary report.
 }
 \details{
 Possible values for the \code{annex} parameter are: \code{"01", "02", "03",
@@ -36,13 +44,15 @@ Possible values for the \code{annex} parameter are: \code{"01", "02", "03",
 "04.3 - RGPS", "05", "06", "07", "09", "10 - RGPS", "10 - RPPS", "11",
 "13", "14"}.
 For more details on the parameter \code{cod} see the column \code{cod_ibge}
-of the function \code{get_entes()}
+of the function \code{\link{get_info}}
 }
 \note{
-Brazilian Public Sector Accounting and Tax Information System (Siconfi): 
-http://apidatalake.tesouro.gov.br/docs/siconfi/
+Brazilian Public Sector Accounting and Tax Information System (Siconfi):
+\url{http://apidatalake.tesouro.gov.br/docs/siconfi/}
 }
 \examples{
-get_budget(year = 2020, period = 1, cod = 35)
-get_budget(year = 2019:2020, period = 2, cod = 35)
+get_budget(year = 2020, period = 1, cod = 29)
+}
+\seealso{
+\url{https://conteudo.tesouro.gov.br/manuais/index.php?option=com_content&view=article&id=1180:03-00-01-introducao&catid=601&Itemid=675}
 }

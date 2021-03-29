@@ -2,7 +2,7 @@
 % Please edit documentation in R/report_status.R
 \name{report_status}
 \alias{report_status}
-\title{Report Status}
+\title{Report status}
 \usage{
 report_status(year, cod, verbose = FALSE)
 }
@@ -18,12 +18,12 @@ Statistics (IBGE) code assigned to each municipality and state.}
 \code{tibble}
 }
 \description{
-Information on approved and corrected reports as well as 
-matrices delivered to Siconfi.
+Information on approved and corrected reports as well as
+matrices delivered to SICONFI.
 }
 \note{
-Brazilian Public Sector Accounting and Tax Information System (Siconfi): 
-http://apidatalake.tesouro.gov.br/docs/siconfi/
+Brazilian Public Sector Accounting and Tax Information System (Siconfi):
+\url{http://apidatalake.tesouro.gov.br/docs/siconfi/}
 }
 \examples{
 report_status(year = 2020, cod = 35)

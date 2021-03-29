@@ -1,6 +1,7 @@
 #' @title Find state or municipality information
 #' @param query is a character
-#' @param view is a logical, \code{TRUE} open Data Viewer. Default is \code{FALSE}
+#' @param view is a logical, \code{TRUE} open Data Viewer. Default is
+#' \code{FALSE}
 #' @examples
 #' find_cod("rio de janeiro")
 #' find_cod("bahia")
@@ -10,24 +11,16 @@
 #' @importFrom utils View
 #' @export
 
-find_cod <- function(query = NULL, view = FALSE) {
+find_cod <- function(query, view = FALSE) {
 
   df <- siconfir::br_cods
 
-  if (!is.null(query) && !is.character(query) || length(query) > 1) {
-    stop("Invalid type, use character")
+  if (!is.character(query)) {
+    stop("Argument query must be character")
   }
-  if (!is.null(query) &&
-      is.character(query) &&
-      grepl("^\\s*$", query, ignore.case = T)
-    ) {
+
+  if (grepl("^\\s*$", query, ignore.case = TRUE)) {
     stop("Empty query")
-  }
-  if (is.null(query)) {
-    if (view) {
-      utils::View(df)
-    }
-    return(df)
   }
 
   results <- purrr::map(
@@ -36,8 +29,13 @@ find_cod <- function(query = NULL, view = FALSE) {
   ) %>% unlist()
 
   df_results <- dplyr::filter(df, df$ente %in% unlist(results))
+
+  if (nrow(df_results) == 0) {
+    stop(paste("No city or state found with name", query))
+  }
+
   if (view) {
-    View(df_results)
+    utils::View(df_results)
   }
   df_results
 }

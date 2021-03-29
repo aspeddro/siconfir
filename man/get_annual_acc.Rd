@@ -2,18 +2,18 @@
 % Please edit documentation in R/get_annual_acc.R
 \name{get_annual_acc}
 \alias{get_annual_acc}
-\title{Annual Statement of Accounts}
+\title{Annual statement of accounts}
 \usage{
-get_annual_acc(year, annex = NULL, cod, verbose = FALSE)
+get_annual_acc(year, cod, annex = NULL, verbose = FALSE)
 }
 \arguments{
 \item{year}{is a numeric vector}
 
-\item{annex}{is a character vector. Default is \code{NULL},
-it will get all attachments.}
-
 \item{cod}{is a numeric vector. Brazilian Institute of Geography and
 Statistics (IBGE) code assigned to each municipality and state.}
+
+\item{annex}{is a character vector. Default is \code{NULL},
+it will get all attachments.}
 
 \item{verbose}{is a logical. Enable verbose mode. Default is \code{FALSE}}
 }
@@ -21,7 +21,12 @@ Statistics (IBGE) code assigned to each municipality and state.}
 \code{tibble}
 }
 \description{
-Access the Annual Statement of Accounts
+set of tables of patrimonial and budgetary data: balance sheet,
+statement of budgetary revenue. statement of budgetary expenses by nature,
+statement of budgetary expenses by function, statement of execution of
+remains payable - budgetary expenses by nature, statement of execution of
+remains payable - budgetary expenses by function, statement of equity
+variations
 }
 \details{
 Possible values for the \code{annex} parameter are: \code{"Anexo I-AB",
@@ -29,12 +34,15 @@ Possible values for the \code{annex} parameter are: \code{"Anexo I-AB",
 "Anexo I-HI", "DCA-Anexo I-AB", "DCA-Anexo I-C", "DCA-Anexo I-D",
 "DCA-Anexo I-E", "DCA-Anexo I-F", "DCA-Anexo I-G", "DCA-Anexo I-HI"}
 For more details on the parameter \code{cod} see the column \code{cod_ibge}
-of the function \code{get_info()}
+of the function \code{\link{get_info}}
 }
 \note{
 Brazilian Public Sector Accounting and Tax Information System (Siconfi):
-http://apidatalake.tesouro.gov.br/docs/siconfi/
+\url{http://apidatalake.tesouro.gov.br/docs/siconfi/}
 }
 \examples{
 get_annual_acc(year = 2019, cod = 35)
+}
+\seealso{
+\url{https://www.gov.br/secretariadegoverno/pt-br/portalfederativo/guiainicio/prefeito/trilhas-100-dias-de-governo/dca-declaracao-de-contas-anuais}
 }

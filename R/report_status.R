@@ -1,6 +1,6 @@
-#' @title Report Status
-#' @description Information on approved and corrected reports as well as 
-#' matrices delivered to Siconfi.
+#' @title Report status
+#' @description Information on approved and corrected reports as well as
+#' matrices delivered to SICONFI.
 #' @param year is a numeric vector
 #' @param cod is a numeric vector. Brazilian Institute of Geography and
 #' Statistics (IBGE) code assigned to each municipality and state.
@@ -9,8 +9,8 @@
 #' @examples
 #' report_status(year = 2020, cod = 35)
 #' @note
-#' Brazilian Public Sector Accounting and Tax Information System (Siconfi): 
-#' http://apidatalake.tesouro.gov.br/docs/siconfi/
+#' Brazilian Public Sector Accounting and Tax Information System (Siconfi):
+#' \url{http://apidatalake.tesouro.gov.br/docs/siconfi/}
 #' @export
 
 report_status <- function(year, cod, verbose = FALSE) {

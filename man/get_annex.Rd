@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_annex.R
 \name{get_annex}
 \alias{get_annex}
-\title{Attachments of reports by Sphere of Government}
+\title{Attachments of reports by sphere of government}
 \usage{
 get_annex(verbose = FALSE)
 }
@@ -13,7 +13,8 @@ get_annex(verbose = FALSE)
 \code{tibble}
 }
 \description{
-Refers to the annexes to each of the reports / statements grouped by sphere of government
+Refers to the annexes to each of the reports/statements grouped
+by sphere of government
 }
 \examples{
 get_annex()

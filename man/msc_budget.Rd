@@ -2,7 +2,7 @@
 % Please edit documentation in R/msc_budget.R
 \name{msc_budget}
 \alias{msc_budget}
-\title{Budget accounts, Accounting Balances Matrix}
+\title{Budget accounts, accounting balances matrix}
 \usage{
 msc_budget(year, month, cod, matrix_type, class, value, verbose = FALSE)
 }
@@ -14,24 +14,24 @@ msc_budget(year, month, cod, matrix_type, class, value, verbose = FALSE)
 \item{cod}{is a numeric vector. Brazilian Institute of Geography and
 Statistics (IBGE) code assigned to each municipality and state.}
 
-\item{matrix_type}{is a character. Matrix type, monthly or aggregate 
+\item{matrix_type}{is a character. Matrix type, monthly or aggregate
 \code{"MSCC"} or year-end \code{"MSCE"}}
 
-\item{class}{is a numeric vector, integer between 5 and 6. Class of accounting 
-accounts that receive entries of a budgetary nature.}
+\item{class}{is a numeric vector, integer between 5 and 6. Class of
+accounting accounts that receive entries of a budgetary nature.}
 
-\item{value}{is a character. The detailed values can be of three types: 
+\item{value}{is a character. The detailed values can be of three types:
 opening balance \code{"beginning_balance"}, movement \code{"period_change"}
 or ending balance \code{"ending_balance"}}
 
 \item{verbose}{is a logical. Enable verbose mode. Default is \code{FALSE}}
 }
 \description{
-Details of the records reported in the accounting accounts that 
+Details of the records reported in the accounting accounts that
 receive budget entries.
 }
 \note{
-Refers to the accounting accounts for approval of the approval (class 5) and 
-execution (class 6) of the planning and budget, as well as their respective 
+Refers to the accounting accounts for approval of the approval (class 5) and
+execution (class 6) of the planning and budget, as well as their respective
 complementary information
 }

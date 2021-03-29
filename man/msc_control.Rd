@@ -2,7 +2,7 @@
 % Please edit documentation in R/msc_control.R
 \name{msc_control}
 \alias{msc_control}
-\title{Control accounts, Accounting Balances Matrix}
+\title{Control accounts, accounting balances matrix}
 \usage{
 msc_control(year, month, cod, matrix_type, class, value, verbose = FALSE)
 }
@@ -14,24 +14,24 @@ msc_control(year, month, cod, matrix_type, class, value, verbose = FALSE)
 \item{cod}{is a numeric vector. Brazilian Institute of Geography and
 Statistics (IBGE) code assigned to each municipality and state.}
 
-\item{matrix_type}{is a character. Matrix type, monthly or aggregate 
+\item{matrix_type}{is a character. Matrix type, monthly or aggregate
 \code{"MSCC"} or year-end \code{"MSCE"}}
 
-\item{class}{is a numeric vector 7 or 8. Class of accounting accounts that 
+\item{class}{is a numeric vector 7 or 8. Class of accounting accounts that
 receive postings of a control nature.}
 
-\item{value}{is a character. The detailed values can be of three types: 
+\item{value}{is a character. The detailed values can be of three types:
 opening balance \code{"beginning_balance"}, movement \code{"period_change"}
 or ending balance \code{"ending_balance"}}
 
 \item{verbose}{is a logical. Enable verbose mode. Default is \code{FALSE}}
 }
 \description{
-Details of the records informed in the accounting accounts that 
+Details of the records informed in the accounting accounts that
 receive entries of a control nature.
 }
 \note{
-It refers to the control accounting accounts for checking balances of a debtor 
-nature (class 7) and of a creditor nature (class 8) as well as their respective 
-complementary information.
+It refers to the control accounting accounts for checking balances of a
+debtor nature (class 7) and of a creditor nature (class 8) as well as their
+respective complementary information.
 }

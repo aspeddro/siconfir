@@ -3,7 +3,8 @@ siconfir
 
 [README 🇧🇷](README_pt-br.md)
 
-R library to access data from the Brazilian Public Sector Accounting and
+R package to access tax and accounting data of Brazilian states and
+municipalities provided by the Brazilian Public Sector Accounting and
 Tax Information System (SICONFI/[National
 Treasure](https://www.gov.br/tesouronacional/en?set_language=en))
 
@@ -15,23 +16,22 @@ This package is available for
 ``` r
 # install.packages("devtools")
 devtools::install_github("pedrocastroo/siconfir")
-remotes::install_github("pedrocastroo/siconfir") # using remotes package
 ```
 
 ## Using
 
--   [get\_fiscal()](#get_fiscal): Fiscal Management Report
--   [get\_budget()](#get_budget): Budget Execution Summary Report
--   [get\_annual\_acc()](#get_annual_acc): Annual Statement of Accounts
--   [msc\_budget()](#msc_budget): Budget accounts, Accounting Balances
-    Matrix
--   [msc\_control()](#msc_control): Control accounts, Accounting
-    Balances Matrix
--   [msc\_equity()](#msc_equity): Equity accounts, Accounting Balances
-    Matrix
--   [report\_status()](#report_status): Report Status
--   [get\_annex()](#get_annex): Attachments of reports by Sphere of
-    Government
+-   [get\_fiscal()](#get_fiscal): Fiscal management report
+-   [get\_budget()](#get_budget): Budget execution summary report
+-   [get\_annual\_acc()](#get_annual_acc): Annual statement of accounts
+-   [msc\_budget()](#msc_budget): Budget accounts, accounting balances
+    matrix
+-   [msc\_control()](#msc_control): Control accounts, accounting
+    balances matrix
+-   [msc\_equity()](#msc_equity): Equity accounts, accounting balances
+    matrix
+-   [report\_status()](#report_status): Report status
+-   [get\_annex()](#get_annex): Attachments of reports by sphere of
+    government
 -   [get\_info()](#get_info): Basic information of the federation
     entities
 -   [find\_cod()](#find_cod): Find state or municipality information
@@ -49,7 +49,7 @@ library(siconfir)
 ### get\_fiscal()
 
 Fiscal management report for the state of Sao Paulo (`35`) for the first
-two months of 2020:
+four months of 2020:
 
 ``` r
 siconfir::get_fiscal(year = 2020, period = 1, cod = 35)
@@ -68,11 +68,13 @@ siconfir::get_fiscal(year = 2020, period = 1, cod = 35)
     ##  8      2020       1 Q             Governo do…       35 SP    E         45919049
     ##  9      2020       1 Q             Governo do…       35 SP    E         45919049
     ## 10      2020       1 Q             Governo do…       35 SP    E         45919049
-    ## # … with 1,042 more rows, and 6 more variables: anexo <chr>, rotulo <chr>,
-    ## #   coluna <chr>, cod_conta <chr>, conta <chr>, valor <dbl>
+    ## # … with 1,042 more rows, and 6 more variables: anexo <chr>,
+    ## #   rotulo <chr>, coluna <chr>, cod_conta <chr>, conta <chr>,
+    ## #   valor <dbl>
 
-> `cod` is an id assigned to each city and state. See `find_cod()`,
-> `get_info()` or `br_cods`
+> `cod` is an id assigned to each city and state. See [IBGE, Cities and
+> States](https://www.ibge.gov.br/en/cities-and-states.html?view=municipio),
+> `find_cod()`, `get_info()` or `br_cods`
 
 ### get\_budget()
 
@@ -96,35 +98,38 @@ siconfir::get_budget(year = 2018, period = 1, cod = 33)
     ##  8      2018 RREO                1 B             Governo do Esta…       33 RJ   
     ##  9      2018 RREO                1 B             Governo do Esta…       33 RJ   
     ## 10      2018 RREO                1 B             Governo do Esta…       33 RJ   
-    ## # … with 3,299 more rows, and 7 more variables: populacao <int>, anexo <chr>,
-    ## #   rotulo <chr>, coluna <chr>, cod_conta <chr>, conta <chr>, valor <dbl>
+    ## # … with 3,299 more rows, and 7 more variables: populacao <int>,
+    ## #   anexo <chr>, rotulo <chr>, coluna <chr>, cod_conta <chr>,
+    ## #   conta <chr>, valor <dbl>
 
 ### get\_annual\_acc()
 
-Annual accounts statement of the Federal District (`53`) for 2018:
+Declaration of annual accounts of the municipality of Sao Paulo
+(`3550308`) 2018:
 
 ``` r
-siconfir::get_annual_acc(year = 2018, cod = 53)
+siconfir::get_annual_acc(year = 2018, cod = 3550308)
 ```
 
-    ## # A tibble: 2,907 x 11
-    ##    exercicio instituicao  cod_ibge uf    anexo  rotulo coluna cod_conta conta   
-    ##        <int> <chr>           <int> <chr> <chr>  <chr>  <chr>  <chr>     <chr>   
-    ##  1      2018 Governo do …       53 DF    DCA-A… Padrão 31/12… P1.0.0.0… 1.0.0.0…
-    ##  2      2018 Governo do …       53 DF    DCA-A… Padrão 31/12… P1.1.0.0… 1.1.0.0…
-    ##  3      2018 Governo do …       53 DF    DCA-A… Padrão 31/12… P1.1.1.0… 1.1.1.0…
-    ##  4      2018 Governo do …       53 DF    DCA-A… Padrão 31/12… P1.1.1.1… 1.1.1.1…
-    ##  5      2018 Governo do …       53 DF    DCA-A… Padrão 31/12… P1.1.1.1… 1.1.1.1…
-    ##  6      2018 Governo do …       53 DF    DCA-A… Padrão 31/12… P1.1.2.0… 1.1.2.0…
-    ##  7      2018 Governo do …       53 DF    DCA-A… Padrão 31/12… P1.1.2.1… 1.1.2.1…
-    ##  8      2018 Governo do …       53 DF    DCA-A… Padrão 31/12… P1.1.2.1… 1.1.2.1…
-    ##  9      2018 Governo do …       53 DF    DCA-A… Padrão 31/12… P1.1.2.1… 1.1.2.1…
-    ## 10      2018 Governo do …       53 DF    DCA-A… Padrão 31/12… P1.1.2.2… 1.1.2.2…
-    ## # … with 2,897 more rows, and 2 more variables: valor <dbl>, populacao <int>
+    ## # A tibble: 3,714 x 11
+    ##    exercicio instituicao   cod_ibge uf    anexo rotulo coluna cod_conta conta   
+    ##        <int> <chr>            <int> <chr> <chr> <chr>  <chr>  <chr>     <chr>   
+    ##  1      2018 Prefeitura M…  3550308 SP    DCA-… Padrão 31/12… P1.0.0.0… 1.0.0.0…
+    ##  2      2018 Prefeitura M…  3550308 SP    DCA-… Padrão 31/12… P1.1.0.0… 1.1.0.0…
+    ##  3      2018 Prefeitura M…  3550308 SP    DCA-… Padrão 31/12… P1.1.1.0… 1.1.1.0…
+    ##  4      2018 Prefeitura M…  3550308 SP    DCA-… Padrão 31/12… P1.1.1.1… 1.1.1.1…
+    ##  5      2018 Prefeitura M…  3550308 SP    DCA-… Padrão 31/12… P1.1.1.1… 1.1.1.1…
+    ##  6      2018 Prefeitura M…  3550308 SP    DCA-… Padrão 31/12… P1.1.1.1… 1.1.1.1…
+    ##  7      2018 Prefeitura M…  3550308 SP    DCA-… Padrão 31/12… P1.1.1.2… 1.1.1.2…
+    ##  8      2018 Prefeitura M…  3550308 SP    DCA-… Padrão 31/12… P1.1.1.2… 1.1.1.2…
+    ##  9      2018 Prefeitura M…  3550308 SP    DCA-… Padrão 31/12… P1.1.2.0… 1.1.2.0…
+    ## 10      2018 Prefeitura M…  3550308 SP    DCA-… Padrão 31/12… P1.1.2.1… 1.1.2.1…
+    ## # … with 3,704 more rows, and 2 more variables: valor <dbl>,
+    ## #   populacao <int>
 
 ### msc\_budget()
 
-Budget accounts, Accounting Balances Matrix:
+Budget accounts, accounting balances matrix:
 
 ``` r
 siconfir::msc_budget(year = 2020, month = 1, cod = 1, matrix_type = "MSCC", class = 5, value = "period_change")
@@ -144,14 +149,15 @@ siconfir::msc_budget(year = 2020, month = 1, cod = 1, matrix_type = "MSCC", clas
     ##  9 MSCC               1            5 522220101      10101                      1
     ## 10 MSCC               1            5 522220101      10101                      1
     ## # … with 21,874 more rows, and 14 more variables: fonte_recursos <chr>,
-    ## #   funcao <chr>, subfuncao <chr>, exercicio <int>, mes_referencia <int>,
-    ## #   data_referencia <chr>, entrada_msc <int>, natureza_despesa <chr>,
-    ## #   valor <dbl>, natureza_conta <chr>, tipo_valor <chr>, educacao_saude <chr>,
-    ## #   ano_inscricao <int>, natureza_receita <chr>
+    ## #   funcao <chr>, subfuncao <chr>, exercicio <int>,
+    ## #   mes_referencia <int>, data_referencia <chr>, entrada_msc <int>,
+    ## #   natureza_despesa <chr>, valor <dbl>, natureza_conta <chr>,
+    ## #   tipo_valor <chr>, educacao_saude <chr>, ano_inscricao <int>,
+    ## #   natureza_receita <chr>
 
 ### msc\_control()
 
-Control accounts, Accounting Balances Matrix:
+Control accounts, accounting balances matrix:
 
 ``` r
 siconfir::msc_control(year = 2020, month = 6, cod = 17, matrix_type = "MSCC", class = 7, value = "ending_balance")
@@ -177,7 +183,7 @@ siconfir::msc_control(year = 2020, month = 6, cod = 17, matrix_type = "MSCC", cl
 
 ### msc\_equity()
 
-Equity accounts, Accounting Balances Matrix:
+Equity accounts, accounting balances matrix:
 
 ``` r
 siconfir::msc_equity(year = 2020, month = 12, cod = 1, matrix_type = "MSCE", class = 1, value = "beginning_balance") # cod = 1 is id of Brazil
@@ -196,10 +202,10 @@ siconfir::msc_equity(year = 2020, month = 12, cod = 1, matrix_type = "MSCE", cla
     ##  8 MSCE               1            1 111110200      10101                      1
     ##  9 MSCE               1            1 111110200      10101                      1
     ## 10 MSCE               1            1 111110200      10101                      1
-    ## # … with 3,711 more rows, and 9 more variables: ano_fonte_recursos <int>,
-    ## #   fonte_recursos <chr>, exercicio <int>, mes_referencia <int>,
-    ## #   data_referencia <chr>, entrada_msc <int>, valor <dbl>,
-    ## #   natureza_conta <chr>, tipo_valor <chr>
+    ## # … with 3,711 more rows, and 9 more variables:
+    ## #   ano_fonte_recursos <int>, fonte_recursos <chr>, exercicio <int>,
+    ## #   mes_referencia <int>, data_referencia <chr>, entrada_msc <int>,
+    ## #   valor <dbl>, natureza_conta <chr>, tipo_valor <chr>
 
 ### report\_status()
 
@@ -228,7 +234,7 @@ siconfir::report_status(year = 2020, cod = 43)
 
 ### get\_annex()
 
-Attachments of reports by Sphere of Government:
+Attachments of reports by sphere of government:
 
 ``` r
 siconfir::get_annex()
@@ -309,6 +315,11 @@ siconfir::br_cods
     ##  9  1718907 Santa Rosa …       0 NO     TO    M           2021      4846 248515…
     ## 10  1719004 Santa Terez…       0 NO     TO    M           2021      2897 250868…
     ## # … with 5,587 more rows
+
+## Resources
+
+-   [Fiscal Statement Manual 9th Edition, National Treasure
+    (pt-br)](https://conteudo.tesouro.gov.br/manuais/index.php?option=com_content&view=categories&id=560&Itemid=675)
 
 ## Contributing
 

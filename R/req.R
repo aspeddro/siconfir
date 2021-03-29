@@ -4,7 +4,6 @@
 #' @importFrom httr GET status_code http_status content
 
 http_request <- function(url, query, verbose) {
-
   alert <- function() {
     paste(
       purrr::map(
@@ -23,7 +22,7 @@ http_request <- function(url, query, verbose) {
   } else {
     response <- httr::GET(url = url)
   }
-  
+
   if (httr::status_code(response) != 200) {
     stop(httr::http_status(response)$message)
   }
@@ -38,9 +37,10 @@ http_request <- function(url, query, verbose) {
     message("Not found data for:\n", alert())
   }
 
-  has_offset <- ifelse(content$hasMore, 
-    purrr::map(content$links, ~ .[["href"]][.[[1]] == "next"]) %>% 
-      .[purrr::map_lgl(., ~ length(.) > 0)] %>% .[[1]],
+  has_offset <- ifelse(content$hasMore,
+    purrr::map(content$links, ~ .[["href"]][.[[1]] == "next"]) %>%
+      .[purrr::map_lgl(., ~ length(.) > 0)] %>%
+      .[[1]],
     FALSE
   )
 
@@ -48,20 +48,22 @@ http_request <- function(url, query, verbose) {
 }
 
 fetch_rec <- function(url, query = NULL, verbose, old = NULL) {
-
   df <- http_request(url = url, query = query, verbose = verbose)
-  
+
   if (df$hasMore) {
-    return(fetch_rec(url = df$offset, old = c(df$items, old), verbose = verbose))
+    return(
+      fetch_rec(url = df$offset, old = c(df$items, old), verbose = verbose)
+    )
   }
 
   c(df$items, old)
 }
 
 req <- function(type, query, verbose) {
+  df <- fetch_rec(
+    url = utils::URLencode(api(type)), query = query, verbose = verbose
+  )
 
-  df <- fetch_rec(url = utils::URLencode(api(type)), query = query, verbose = verbose)
-
-  tibble::tibble(data = df) %>% 
+  tibble::tibble(data = df) %>%
     tidyr::unnest_wider(col = "data")
 }

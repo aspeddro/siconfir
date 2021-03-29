@@ -4,12 +4,13 @@
 \alias{find_cod}
 \title{Find state or municipality information}
 \usage{
-find_cod(query = NULL, view = FALSE)
+find_cod(query, view = FALSE)
 }
 \arguments{
 \item{query}{is a character}
 
-\item{view}{is a logical, \code{TRUE} open Data Viewer. Default is \code{FALSE}}
+\item{view}{is a logical, \code{TRUE} open Data Viewer. Default is
+\code{FALSE}}
 }
 \value{
 \code{tibble}

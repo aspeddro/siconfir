@@ -1,7 +1,8 @@
 siconfir
 ================
 
-Pacote R para acessar dados Sistema de Informações Contábeis e
+Pacote R para acessar dados fiscais e contábeis de estados e municípios
+brasileiros fornecido pelo Sistema de Informações Contábeis e
 Tributárias do Setor Público Brasileiro (SICONFI/[Tesouro
 Nacional](https://www.gov.br/tesouronacional/))
 
@@ -13,15 +14,14 @@ Esse pacote está disponível para
 ``` r
 # install.packages("devtools")
 devtools::install_github("pedrocastroo/siconfir")
-remotes::install_github("pedrocastroo/siconfir") # usando pacote remotes
 ```
 
 ## Usando
 
--   [get\_fiscal()](#get_fiscal): Relatório de Gestão Fiscal
--   [get\_budget()](#get_budget): Relatório Resumido de Execução
-    Orçamentária
--   [get\_annual\_acc()](#get_annual_acc): Declaração de Contas Anuais
+-   [get\_fiscal()](#get_fiscal): Relatório de gestão fiscal
+-   [get\_budget()](#get_budget): Relatório resumido de execução
+    orçamentária
+-   [get\_annual\_acc()](#get_annual_acc): Declaração de contas anuais
 -   [msc\_budget()](#msc_budget): Contas orçamentária, matriz de saldos
     contábeis
 -   [msc\_control()](#msc_control): Contas de controle, matriz de saldos
@@ -31,7 +31,7 @@ remotes::install_github("pedrocastroo/siconfir") # usando pacote remotes
 -   [report\_status()](#report_status): Extrato de relatórios
     homologados e matrizes entregues
 -   [get\_annex()](#get_annex): Anexos de relatórios por esfera de
-    Governo
+    governo
 -   [get\_info()](#get_info): Informações básicas dos entes da federação
 -   [find\_cod()](#find_cod): Encontra informações sobre o estado ou
     município
@@ -48,7 +48,7 @@ library(siconfir)
 
 ### get\_fiscal()
 
-Relatório de Gestão Fiscal do estado de São Paulo (`35`) para o primeiro
+Relatório de gestão fiscal do estado de São Paulo (`35`) para o primeiro
 quadrimestre de 2020:
 
 ``` r
@@ -68,15 +68,18 @@ siconfir::get_fiscal(year = 2020, period = 1, cod = 35)
     ##  8      2020       1 Q             Governo do…       35 SP    E         45919049
     ##  9      2020       1 Q             Governo do…       35 SP    E         45919049
     ## 10      2020       1 Q             Governo do…       35 SP    E         45919049
-    ## # … with 1,042 more rows, and 6 more variables: anexo <chr>, rotulo <chr>,
-    ## #   coluna <chr>, cod_conta <chr>, conta <chr>, valor <dbl>
+    ## # … with 1,042 more rows, and 6 more variables: anexo <chr>,
+    ## #   rotulo <chr>, coluna <chr>, cod_conta <chr>, conta <chr>,
+    ## #   valor <dbl>
 
-> `cod` é um id atribuído para cada cidade e estado. Veja `find_cod()`,
+> `cod` é um id atribuído para cada cidade e estado. Veja [IBGE, Cidades
+> e
+> Estados](https://www.ibge.gov.br/cidades-e-estados.html?view=municipio)`find_cod()`,
 > `get_info()` ou `br_cods`
 
 ### get\_budget()
 
-Relatório Resumido de Execução Orçamentária do estado de Rio de Janeiro
+Relatório resumido de execução orçamentária do estado do Rio de Janeiro
 (`33`) de 2018, primeiro bimestre:
 
 ``` r
@@ -96,31 +99,34 @@ siconfir::get_budget(year = 2018, period = 1, cod = 33)
     ##  8      2018 RREO                1 B             Governo do Esta…       33 RJ   
     ##  9      2018 RREO                1 B             Governo do Esta…       33 RJ   
     ## 10      2018 RREO                1 B             Governo do Esta…       33 RJ   
-    ## # … with 3,299 more rows, and 7 more variables: populacao <int>, anexo <chr>,
-    ## #   rotulo <chr>, coluna <chr>, cod_conta <chr>, conta <chr>, valor <dbl>
+    ## # … with 3,299 more rows, and 7 more variables: populacao <int>,
+    ## #   anexo <chr>, rotulo <chr>, coluna <chr>, cod_conta <chr>,
+    ## #   conta <chr>, valor <dbl>
 
 ### get\_annual\_acc()
 
-Declaração de Contas Anuais do Distrito Federal (`53`) de 2018:
+Declaração de contas anuais do municipio de São Paulo (`3550308`) de
+2018:
 
 ``` r
-siconfir::get_annual_acc(year = 2018, cod = 53)
+siconfir::get_annual_acc(year = 2018, cod = 3550308)
 ```
 
-    ## # A tibble: 2,907 x 11
-    ##    exercicio instituicao  cod_ibge uf    anexo  rotulo coluna cod_conta conta   
-    ##        <int> <chr>           <int> <chr> <chr>  <chr>  <chr>  <chr>     <chr>   
-    ##  1      2018 Governo do …       53 DF    DCA-A… Padrão 31/12… P1.0.0.0… 1.0.0.0…
-    ##  2      2018 Governo do …       53 DF    DCA-A… Padrão 31/12… P1.1.0.0… 1.1.0.0…
-    ##  3      2018 Governo do …       53 DF    DCA-A… Padrão 31/12… P1.1.1.0… 1.1.1.0…
-    ##  4      2018 Governo do …       53 DF    DCA-A… Padrão 31/12… P1.1.1.1… 1.1.1.1…
-    ##  5      2018 Governo do …       53 DF    DCA-A… Padrão 31/12… P1.1.1.1… 1.1.1.1…
-    ##  6      2018 Governo do …       53 DF    DCA-A… Padrão 31/12… P1.1.2.0… 1.1.2.0…
-    ##  7      2018 Governo do …       53 DF    DCA-A… Padrão 31/12… P1.1.2.1… 1.1.2.1…
-    ##  8      2018 Governo do …       53 DF    DCA-A… Padrão 31/12… P1.1.2.1… 1.1.2.1…
-    ##  9      2018 Governo do …       53 DF    DCA-A… Padrão 31/12… P1.1.2.1… 1.1.2.1…
-    ## 10      2018 Governo do …       53 DF    DCA-A… Padrão 31/12… P1.1.2.2… 1.1.2.2…
-    ## # … with 2,897 more rows, and 2 more variables: valor <dbl>, populacao <int>
+    ## # A tibble: 3,714 x 11
+    ##    exercicio instituicao   cod_ibge uf    anexo rotulo coluna cod_conta conta   
+    ##        <int> <chr>            <int> <chr> <chr> <chr>  <chr>  <chr>     <chr>   
+    ##  1      2018 Prefeitura M…  3550308 SP    DCA-… Padrão 31/12… P1.0.0.0… 1.0.0.0…
+    ##  2      2018 Prefeitura M…  3550308 SP    DCA-… Padrão 31/12… P1.1.0.0… 1.1.0.0…
+    ##  3      2018 Prefeitura M…  3550308 SP    DCA-… Padrão 31/12… P1.1.1.0… 1.1.1.0…
+    ##  4      2018 Prefeitura M…  3550308 SP    DCA-… Padrão 31/12… P1.1.1.1… 1.1.1.1…
+    ##  5      2018 Prefeitura M…  3550308 SP    DCA-… Padrão 31/12… P1.1.1.1… 1.1.1.1…
+    ##  6      2018 Prefeitura M…  3550308 SP    DCA-… Padrão 31/12… P1.1.1.1… 1.1.1.1…
+    ##  7      2018 Prefeitura M…  3550308 SP    DCA-… Padrão 31/12… P1.1.1.2… 1.1.1.2…
+    ##  8      2018 Prefeitura M…  3550308 SP    DCA-… Padrão 31/12… P1.1.1.2… 1.1.1.2…
+    ##  9      2018 Prefeitura M…  3550308 SP    DCA-… Padrão 31/12… P1.1.2.0… 1.1.2.0…
+    ## 10      2018 Prefeitura M…  3550308 SP    DCA-… Padrão 31/12… P1.1.2.1… 1.1.2.1…
+    ## # … with 3,704 more rows, and 2 more variables: valor <dbl>,
+    ## #   populacao <int>
 
 ### msc\_budget()
 
@@ -144,10 +150,11 @@ siconfir::msc_budget(year = 2020, month = 1, cod = 1, matrix_type = "MSCC", clas
     ##  9 MSCC               1            5 522220101      10101                      1
     ## 10 MSCC               1            5 522220101      10101                      1
     ## # … with 21,874 more rows, and 14 more variables: fonte_recursos <chr>,
-    ## #   funcao <chr>, subfuncao <chr>, exercicio <int>, mes_referencia <int>,
-    ## #   data_referencia <chr>, entrada_msc <int>, natureza_despesa <chr>,
-    ## #   valor <dbl>, natureza_conta <chr>, tipo_valor <chr>, educacao_saude <chr>,
-    ## #   ano_inscricao <int>, natureza_receita <chr>
+    ## #   funcao <chr>, subfuncao <chr>, exercicio <int>,
+    ## #   mes_referencia <int>, data_referencia <chr>, entrada_msc <int>,
+    ## #   natureza_despesa <chr>, valor <dbl>, natureza_conta <chr>,
+    ## #   tipo_valor <chr>, educacao_saude <chr>, ano_inscricao <int>,
+    ## #   natureza_receita <chr>
 
 ### msc\_control()
 
@@ -196,10 +203,10 @@ siconfir::msc_equity(year = 2020, month = 12, cod = 1, matrix_type = "MSCE", cla
     ##  8 MSCE               1            1 111110200      10101                      1
     ##  9 MSCE               1            1 111110200      10101                      1
     ## 10 MSCE               1            1 111110200      10101                      1
-    ## # … with 3,711 more rows, and 9 more variables: ano_fonte_recursos <int>,
-    ## #   fonte_recursos <chr>, exercicio <int>, mes_referencia <int>,
-    ## #   data_referencia <chr>, entrada_msc <int>, valor <dbl>,
-    ## #   natureza_conta <chr>, tipo_valor <chr>
+    ## # … with 3,711 more rows, and 9 more variables:
+    ## #   ano_fonte_recursos <int>, fonte_recursos <chr>, exercicio <int>,
+    ## #   mes_referencia <int>, data_referencia <chr>, entrada_msc <int>,
+    ## #   valor <dbl>, natureza_conta <chr>, tipo_valor <chr>
 
 ### report\_status()
 
@@ -308,6 +315,11 @@ siconfir::br_cods
     ##  9  1718907 Santa Rosa …       0 NO     TO    M           2021      4846 248515…
     ## 10  1719004 Santa Terez…       0 NO     TO    M           2021      2897 250868…
     ## # … with 5,587 more rows
+
+## Recursos
+
+-   [Manual de Demonstrativos Fiscais 9ª Edição, Tesouro
+    Nacional](https://conteudo.tesouro.gov.br/manuais/index.php?option=com_content&view=categories&id=560&Itemid=675)
 
 ## Contribuindo
 

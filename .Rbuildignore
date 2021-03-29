@@ -3,11 +3,10 @@
 ^utils$
 ^Makefile$
 ^\.editorconfig$
-^README\.md$
 ^docs$
-^LICENSE\.md$
-^README\.Rmd$
 ^\.vscode$
-^\.test$
-^README_pt-br\.Rmd$
-^README_pt-br\.md$
+^test$
+[.]html$
+[.]md$
+[.]Rmd$
+[.]gz$

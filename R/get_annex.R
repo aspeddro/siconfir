@@ -1,8 +1,9 @@
-#' @title Attachments of reports by Sphere of Government
-#' @description Refers to the annexes to each of the reports / statements grouped by sphere of government
+#' @title Attachments of reports by sphere of government
+#' @description Refers to the annexes to each of the reports/statements grouped
+#' by sphere of government
 #' @param verbose is a logical. Enable verbose mode. Default is \code{FALSE}
 #' @return \code{tibble}
-#' @examples 
+#' @examples
 #' get_annex()
 #' @export
 

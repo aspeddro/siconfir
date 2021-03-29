@@ -7,7 +7,7 @@ output: github_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-Pacote R para acessar dados Sistema de Informações Contábeis e Tributárias do Setor Público Brasileiro (SICONFI/[Tesouro Nacional](https://www.gov.br/tesouronacional/))
+Pacote R para acessar dados fiscais e contábeis de estados e municípios brasileiros fornecido pelo Sistema de Informações Contábeis e Tributárias do Setor Público Brasileiro (SICONFI/[Tesouro Nacional](https://www.gov.br/tesouronacional/))
 
 Esse pacote está disponível para [**Python**](https://github.com/pedrocastroo/siconfipy)
 
@@ -16,19 +16,18 @@ Esse pacote está disponível para [**Python**](https://github.com/pedrocastroo/
 ```{r eval = F}
 # install.packages("devtools")
 devtools::install_github("pedrocastroo/siconfir")
-remotes::install_github("pedrocastroo/siconfir") # usando pacote remotes
 ```
 
 ## Usando
 
-- [get_fiscal()](#get_fiscal): Relatório de Gestão Fiscal
-- [get_budget()](#get_budget): Relatório Resumido de Execução Orçamentária
-- [get_annual_acc()](#get_annual_acc): Declaração de Contas Anuais
+- [get_fiscal()](#get_fiscal): Relatório de gestão fiscal
+- [get_budget()](#get_budget): Relatório resumido de execução orçamentária
+- [get_annual_acc()](#get_annual_acc): Declaração de contas anuais
 - [msc_budget()](#msc_budget): Contas orçamentária, matriz de saldos contábeis
 - [msc_control()](#msc_control): Contas de controle, matriz de saldos contábeis
 - [msc_equity()](#msc_equity): Contas patrimoniais, matriz de saldos contábeis
 - [report_status()](#report_status): Extrato de relatórios homologados e matrizes entregues
-- [get_annex()](#get_annex): Anexos de relatórios por esfera de Governo 
+- [get_annex()](#get_annex): Anexos de relatórios por esfera de governo 
 - [get_info()](#get_info): Informações básicas dos entes da federação
 - [find_cod()](#find_cod): Encontra informações sobre o estado ou município
 
@@ -44,17 +43,17 @@ library(siconfir)
 
 ### get_fiscal(){#get_fiscal}
 
-Relatório de Gestão Fiscal do estado de São Paulo (`35`) para o primeiro quadrimestre de 2020:
+Relatório de gestão fiscal do estado de São Paulo (`35`) para o primeiro quadrimestre de 2020:
 
 ```{r}
 siconfir::get_fiscal(year = 2020, period = 1, cod = 35)
 ```
 
-> `cod` é um id atribuído para cada cidade e estado. Veja `find_cod()`, `get_info()` ou `br_cods`
+> `cod` é um id atribuído para cada cidade e estado. Veja [IBGE, Cidades e Estados](https://www.ibge.gov.br/cidades-e-estados.html?view=municipio)`find_cod()`, `get_info()` ou `br_cods`
 
 ### get_budget(){#get_budget}
 
-Relatório Resumido de Execução Orçamentária do estado de Rio de Janeiro (`33`) de 2018, primeiro bimestre:
+Relatório resumido de execução orçamentária do estado do Rio de Janeiro (`33`) de 2018, primeiro bimestre:
 
 ```{r}
 siconfir::get_budget(year = 2018, period = 1, cod = 33)
@@ -62,10 +61,10 @@ siconfir::get_budget(year = 2018, period = 1, cod = 33)
 
 ### get_annual_acc(){#get_annual_acc}
 
-Declaração de Contas Anuais do Distrito Federal (`53`) de 2018:
+Declaração de contas anuais do municipio de São Paulo (`3550308`) de 2018:
 
 ```{r}
-siconfir::get_annual_acc(year = 2018, cod = 53)
+siconfir::get_annual_acc(year = 2018, cod = 3550308)
 ```
 
 ### msc_budget(){#msc_budget}
@@ -131,6 +130,10 @@ Informações básicas de municípios e estados brasileiros. `br_cods` fornece r
 ```{r}
 siconfir::br_cods
 ```
+
+## Recursos
+
+- [Manual de Demonstrativos Fiscais 9ª Edição, Tesouro Nacional](https://conteudo.tesouro.gov.br/manuais/index.php?option=com_content&view=categories&id=560&Itemid=675)
 
 ## Contribuindo
 
