@@ -47,7 +47,7 @@ get_budget <- function(year,
     nr_periodo = period,
     id_ente = cod,
     co_tipo_demonstrativo = if (simple) "RREO Simplificado" else "RREO",
-    no_anexo = annex,
+    no_anexo = if (!is.null(annex)) paste0("RREO-Anexo ", annex) else annex,
     verbose = verbose
   )
 }

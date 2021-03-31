@@ -7,7 +7,7 @@ readme:
 	$(R) -e 'library(rmarkdown); render("README.Rmd", output_format = "github_document"); render("README_pt-br.Rmd", output_format = "github_document")'
 
 check:
-	$(R) -e 'devtools::check(); devtools::check_man();'
+	$(R) -e 'devtools::check(); devtools::check_man(); devtools::check_rhub(); devtools::check_win_release()'
 
 datasets:
 	$(R) utils/build_datasets.R

@@ -10,3 +10,5 @@
 [.]md$
 [.]Rmd$
 [.]gz$
+^CRAN-RELEASE$
+^cran-comments\.md$
