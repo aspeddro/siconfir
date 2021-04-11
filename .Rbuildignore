@@ -12,3 +12,4 @@
 [.]gz$
 ^CRAN-RELEASE$
 ^cran-comments\.md$
+^\.github$
