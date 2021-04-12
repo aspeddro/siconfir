@@ -35,7 +35,7 @@ Datasets:
 
 - [`br_cods`](#br_cods)
 
-## Examplos
+## Exemplos
 
 ```{r}
 library(siconfir)
