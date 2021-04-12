@@ -51,7 +51,7 @@ Brazilian Public Sector Accounting and Tax Information System (Siconfi):
 \url{http://apidatalake.tesouro.gov.br/docs/siconfi/}
 }
 \examples{
-get_budget(year = 2020, period = 1, cod = 29)
+\donttest{get_budget(year = 2020, period = 1, cod = 29)}
 }
 \seealso{
 \url{https://conteudo.tesouro.gov.br/manuais/index.php?option=com_content&view=article&id=1180:03-00-01-introducao&catid=601&Itemid=675}

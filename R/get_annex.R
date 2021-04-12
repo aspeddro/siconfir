@@ -4,7 +4,7 @@
 #' @param verbose is a logical. Enable verbose mode. Default is \code{FALSE}
 #' @return \code{tibble}
 #' @examples
-#' get_annex()
+#' \donttest{get_annex()}
 #' @export
 
 get_annex <- function(verbose = FALSE) {

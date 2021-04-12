@@ -59,8 +59,8 @@ Brazilian Public Sector Accounting and Tax Information System (Siconfi):
 \url{http://apidatalake.tesouro.gov.br/docs/siconfi/}
 }
 \examples{
-get_fiscal(year = 2019, period = 1:3, cod = 35, power = "E")
-get_fiscal(year = 2017, period = 2, annex = 1, power = "E", cod = 1)
+\donttest{get_fiscal(year = 2019, period = 1:3, cod = 35, power = "E")}
+\donttest{get_fiscal(year = 2017, period = 2, annex = 1, cod = 1)}
 }
 \seealso{
 \url{https://conteudo.tesouro.gov.br/manuais/index.php?option=com_content&view=article&id=1344:04-00-01-01-conteudo-do-relatorio&catid=677&Itemid=675}

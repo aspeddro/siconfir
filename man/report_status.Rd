@@ -26,5 +26,5 @@ Brazilian Public Sector Accounting and Tax Information System (Siconfi):
 \url{http://apidatalake.tesouro.gov.br/docs/siconfi/}
 }
 \examples{
-report_status(year = 2020, cod = 35)
+\donttest{report_status(year = 2020, cod = 35)}
 }

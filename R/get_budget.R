@@ -29,7 +29,7 @@
 #' For more details on the parameter \code{cod} see the column \code{cod_ibge}
 #' of the function \code{\link{get_info}}
 #' @examples
-#' get_budget(year = 2020, period = 1, cod = 29)
+#' \donttest{get_budget(year = 2020, period = 1, cod = 29)}
 #' @note
 #' Brazilian Public Sector Accounting and Tax Information System (Siconfi):
 #' \url{http://apidatalake.tesouro.gov.br/docs/siconfi/}

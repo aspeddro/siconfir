@@ -7,7 +7,7 @@
 #' @param verbose is a logical. Enable verbose mode. Default is \code{FALSE}
 #' @return \code{tibble}
 #' @examples
-#' report_status(year = 2020, cod = 35)
+#' \donttest{report_status(year = 2020, cod = 35)}
 #' @note
 #' Brazilian Public Sector Accounting and Tax Information System (Siconfi):
 #' \url{http://apidatalake.tesouro.gov.br/docs/siconfi/}
