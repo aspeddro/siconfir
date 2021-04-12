@@ -1,7 +1,7 @@
 Type: Package
 Package: siconfir
 Title: Provides Quick and Easy Access Tax and Accounting Data of Brazilian States and Municipalities
-Version: 1.0.1
+Version: 1.0.2
 Authors@R:
     c(person(given="Pedro",
             family="Castro", 
