@@ -44,5 +44,5 @@ Brazilian Public Sector Accounting and Tax Information System (Siconfi):
 \donttest{get_annual_acc(year = 2019, cod = 35)}
 }
 \seealso{
-\url{https://bit.ly/3wHkUsp}
+\url{https://www.gov.br/secretariadegoverno/pt-br/portalfederativo/guiainicio/prefeito/trilhas-100-dias-de-governo/dca-declaracao-de-contas-anuais}
 }

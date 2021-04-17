@@ -5,7 +5,7 @@
 #' remains payable - budgetary expenses by nature, statement of execution of
 #' remains payable - budgetary expenses by function, statement of equity
 #' variations
-#' @seealso \url{https://bit.ly/3wHkUsp}
+#' @seealso \url{https://www.gov.br/secretariadegoverno/pt-br/portalfederativo/guiainicio/prefeito/trilhas-100-dias-de-governo/dca-declaracao-de-contas-anuais}
 #' @param year is a numeric vector
 #' @param cod is a numeric vector. Brazilian Institute of Geography and
 #' Statistics (IBGE) code assigned to each municipality and state.
