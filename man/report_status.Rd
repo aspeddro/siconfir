@@ -16,6 +16,8 @@ Statistics (IBGE) code assigned to each municipality and state.}
 }
 \value{
 \code{tibble}
+
+\code{tibble}
 }
 \description{
 Information on approved and corrected reports as well as

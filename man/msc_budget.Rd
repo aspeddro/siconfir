@@ -26,6 +26,9 @@ or ending balance \code{"ending_balance"}}
 
 \item{verbose}{is a logical. Enable verbose mode. Default is \code{FALSE}}
 }
+\value{
+\code{tibble}
+}
 \description{
 Details of the records reported in the accounting accounts that
 receive budget entries.

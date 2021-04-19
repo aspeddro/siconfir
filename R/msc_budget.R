@@ -17,6 +17,7 @@
 #' Refers to the accounting accounts for approval of the approval (class 5) and
 #' execution (class 6) of the planning and budget, as well as their respective
 #' complementary information
+#' @return \code{tibble}
 #' @export
 
 msc_budget <- function(year,

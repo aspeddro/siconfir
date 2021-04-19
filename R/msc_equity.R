@@ -17,6 +17,7 @@
 #' It refers to the accounting accounts for assets (class 1), liabilities
 #' (class 2), diminishing equity variations (class 3) and augmenting equity
 #' variations (class 4) as well as their respective complementary information.
+#' @return \code{tibble}
 #' @export
 
 msc_equity <- function(year,

@@ -11,6 +11,7 @@
 #' @note
 #' Brazilian Public Sector Accounting and Tax Information System (Siconfi):
 #' \url{http://apidatalake.tesouro.gov.br/docs/siconfi/}
+#' @return \code{tibble}
 #' @export
 
 report_status <- function(year, cod, verbose = FALSE) {

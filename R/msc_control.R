@@ -17,6 +17,7 @@
 #' It refers to the control accounting accounts for checking balances of a
 #' debtor nature (class 7) and of a creditor nature (class 8) as well as their
 #' respective complementary information.
+#' @return \code{tibble}
 #' @export
 
 msc_control <- function(year,
