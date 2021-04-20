@@ -13,6 +13,14 @@ Esse pacote está disponível para [**Python**](https://github.com/pedrocastroo/
 
 ## Instalação
 
+Instalar a partir do [CRAN](https://cran.r-project.org/package=siconfir)
+
+```{r eval = F}
+install.packages("siconfir")
+```
+
+ou a versão em desenvolvimento:
+
 ```{r eval = F}
 # install.packages("devtools")
 devtools::install_github("pedrocastroo/siconfir")

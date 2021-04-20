@@ -13,6 +13,14 @@ This package is available for
 
 ## Installation
 
+Install from [CRAN](https://cran.r-project.org/package=siconfir):
+
+``` r
+install.packages("siconfir")
+```
+
+or the development version from GitHub:
+
 ``` r
 # install.packages("devtools")
 devtools::install_github("pedrocastroo/siconfir")
@@ -55,7 +63,7 @@ four months of 2020:
 siconfir::get_fiscal(year = 2020, period = 1, cod = 35)
 ```
 
-    ## # A tibble: 1,052 x 14
+    ## # A tibble: 1,052 x 15
     ##    exercicio periodo periodicidade instituicao cod_ibge uf    co_poder populacao
     ##        <int>   <int> <chr>         <chr>          <int> <chr> <chr>        <int>
     ##  1      2020       1 Q             Governo do…       35 SP    E         45919049
@@ -68,9 +76,8 @@ siconfir::get_fiscal(year = 2020, period = 1, cod = 35)
     ##  8      2020       1 Q             Governo do…       35 SP    E         45919049
     ##  9      2020       1 Q             Governo do…       35 SP    E         45919049
     ## 10      2020       1 Q             Governo do…       35 SP    E         45919049
-    ## # … with 1,042 more rows, and 6 more variables: anexo <chr>,
-    ## #   rotulo <chr>, coluna <chr>, cod_conta <chr>, conta <chr>,
-    ## #   valor <dbl>
+    ## # … with 1,042 more rows, and 7 more variables: anexo <chr>, esfera <chr>,
+    ## #   rotulo <chr>, coluna <chr>, cod_conta <chr>, conta <chr>, valor <dbl>
 
 > `cod` is an id assigned to each city and state. See [IBGE, Cities and
 > States](https://www.ibge.gov.br/en/cities-and-states.html?view=municipio),
@@ -85,7 +92,7 @@ Summary of the budget execution report for the state of Rio de Janeiro
 siconfir::get_budget(year = 2018, period = 1, cod = 33)
 ```
 
-    ## # A tibble: 3,309 x 14
+    ## # A tibble: 3,309 x 15
     ##    exercicio demonstrativo periodo periodicidade instituicao      cod_ibge uf   
     ##        <int> <chr>           <int> <chr>         <chr>               <int> <chr>
     ##  1      2018 RREO                1 B             Governo do Esta…       33 RJ   
@@ -98,9 +105,9 @@ siconfir::get_budget(year = 2018, period = 1, cod = 33)
     ##  8      2018 RREO                1 B             Governo do Esta…       33 RJ   
     ##  9      2018 RREO                1 B             Governo do Esta…       33 RJ   
     ## 10      2018 RREO                1 B             Governo do Esta…       33 RJ   
-    ## # … with 3,299 more rows, and 7 more variables: populacao <int>,
-    ## #   anexo <chr>, rotulo <chr>, coluna <chr>, cod_conta <chr>,
-    ## #   conta <chr>, valor <dbl>
+    ## # … with 3,299 more rows, and 8 more variables: populacao <int>, anexo <chr>,
+    ## #   esfera <chr>, rotulo <chr>, coluna <chr>, cod_conta <chr>, conta <chr>,
+    ## #   valor <dbl>
 
 ### get\_annual\_acc()
 
@@ -124,8 +131,7 @@ siconfir::get_annual_acc(year = 2018, cod = 3550308)
     ##  8      2018 Prefeitura M…  3550308 SP    DCA-… Padrão 31/12… P1.1.1.2… 1.1.1.2…
     ##  9      2018 Prefeitura M…  3550308 SP    DCA-… Padrão 31/12… P1.1.2.0… 1.1.2.0…
     ## 10      2018 Prefeitura M…  3550308 SP    DCA-… Padrão 31/12… P1.1.2.1… 1.1.2.1…
-    ## # … with 3,704 more rows, and 2 more variables: valor <dbl>,
-    ## #   populacao <int>
+    ## # … with 3,704 more rows, and 2 more variables: valor <dbl>, populacao <int>
 
 ### msc\_budget()
 
@@ -149,11 +155,10 @@ siconfir::msc_budget(year = 2020, month = 1, cod = 1, matrix_type = "MSCC", clas
     ##  9 MSCC               1            5 522220101      10101                      1
     ## 10 MSCC               1            5 522220101      10101                      1
     ## # … with 21,874 more rows, and 14 more variables: fonte_recursos <chr>,
-    ## #   funcao <chr>, subfuncao <chr>, exercicio <int>,
-    ## #   mes_referencia <int>, data_referencia <chr>, entrada_msc <int>,
-    ## #   natureza_despesa <chr>, valor <dbl>, natureza_conta <chr>,
-    ## #   tipo_valor <chr>, educacao_saude <chr>, ano_inscricao <int>,
-    ## #   natureza_receita <chr>
+    ## #   funcao <chr>, subfuncao <chr>, exercicio <int>, mes_referencia <int>,
+    ## #   data_referencia <chr>, entrada_msc <int>, natureza_despesa <chr>,
+    ## #   valor <dbl>, natureza_conta <chr>, tipo_valor <chr>, educacao_saude <chr>,
+    ## #   ano_inscricao <int>, natureza_receita <chr>
 
 ### msc\_control()
 
@@ -202,10 +207,10 @@ siconfir::msc_equity(year = 2020, month = 12, cod = 1, matrix_type = "MSCE", cla
     ##  8 MSCE               1            1 111110200      10101                      1
     ##  9 MSCE               1            1 111110200      10101                      1
     ## 10 MSCE               1            1 111110200      10101                      1
-    ## # … with 3,711 more rows, and 9 more variables:
-    ## #   ano_fonte_recursos <int>, fonte_recursos <chr>, exercicio <int>,
-    ## #   mes_referencia <int>, data_referencia <chr>, entrada_msc <int>,
-    ## #   valor <dbl>, natureza_conta <chr>, tipo_valor <chr>
+    ## # … with 3,711 more rows, and 9 more variables: ano_fonte_recursos <int>,
+    ## #   fonte_recursos <chr>, exercicio <int>, mes_referencia <int>,
+    ## #   data_referencia <chr>, entrada_msc <int>, valor <dbl>,
+    ## #   natureza_conta <chr>, tipo_valor <chr>
 
 ### report\_status()
 
@@ -240,20 +245,20 @@ Attachments of reports by sphere of government:
 siconfir::get_annex()
 ```
 
-    ## # A tibble: 161 x 3
-    ##    esfera demonstrativo anexo         
-    ##    <chr>  <chr>         <chr>         
-    ##  1 E      DCA           Anexo I-AB    
-    ##  2 E      DCA           Anexo I-C     
-    ##  3 E      DCA           Anexo I-D     
-    ##  4 E      DCA           Anexo I-E     
-    ##  5 E      DCA           Anexo I-F     
-    ##  6 E      DCA           Anexo I-G     
-    ##  7 E      DCA           Anexo I-HI    
-    ##  8 E      DCA           DCA-Anexo I-AB
-    ##  9 E      DCA           DCA-Anexo I-C 
-    ## 10 E      DCA           DCA-Anexo I-D 
-    ## # … with 151 more rows
+    ## # A tibble: 166 x 3
+    ##    esfera demonstrativo anexo        
+    ##    <chr>  <chr>         <chr>        
+    ##  1 C      QDCC          RGF-Anexo 01 
+    ##  2 C      QDCC          RGF-Anexo 05 
+    ##  3 C      QDCC          RGF-Anexo 06 
+    ##  4 C      QDCC          RREO-Anexo 01
+    ##  5 C      QDCC          RREO-Anexo 02
+    ##  6 E      DCA           Anexo I-AB   
+    ##  7 E      DCA           Anexo I-C    
+    ##  8 E      DCA           Anexo I-D    
+    ##  9 E      DCA           Anexo I-E    
+    ## 10 E      DCA           Anexo I-F    
+    ## # … with 156 more rows
 
 ### get\_info()
 
@@ -264,18 +269,18 @@ siconfir::get_info()
 ```
 
     ## # A tibble: 5,597 x 9
-    ##    cod_ibge ente         capital regiao uf    esfera exercicio populacao cnpj   
-    ##       <int> <chr>        <chr>   <chr>  <chr> <chr>      <int>     <int> <chr>  
-    ##  1  1718659 Rio da Conc… "0  "   CO     TO    M           2021      2171 332625…
-    ##  2  1718709 Rio dos Bois "0  "   CO     TO    M           2021      2856 374209…
-    ##  3  1718758 Rio Sono     "0  "   CO     TO    M           2021      6488 000007…
-    ##  4  1718808 Sampaio      "0  "   CO     TO    M           2021      4794 250868…
-    ##  5  1718840 Sandolândia  "0  "   CO     TO    M           2021      3373 373443…
-    ##  6  1718865 Santa Fé do… "0  "   CO     TO    M           2021      7595 250639…
-    ##  7  1718881 Santa Maria… "0  "   CO     TO    M           2021      3486 374210…
-    ##  8  1718899 Santa Rita … "0  "   CO     TO    M           2021      2386 016131…
-    ##  9  1718907 Santa Rosa … "0  "   CO     TO    M           2021      4846 248515…
-    ## 10  1719004 Santa Terez… "0  "   CO     TO    M           2021      2897 250868…
+    ##    cod_ibge ente        capital regiao uf    esfera exercicio populacao cnpj    
+    ##       <int> <chr>       <chr>   <chr>  <chr> <chr>      <int>     <int> <chr>   
+    ##  1  2803302 Japaratuba  "0  "   NE     SE    M           2021     18907 1309378…
+    ##  2  2803401 Japoatã     "0  "   NE     SE    M           2021     13429 1311591…
+    ##  3  2803500 Lagarto     "0  "   NE     SE    M           2021    105221 1312405…
+    ##  4  2803609 Laranjeiras "0  "   NE     SE    M           2021     30080 1312061…
+    ##  5  2803708 Macambira   "0  "   NE     SE    M           2021      6961 1310368…
+    ##  6  2803807 Malhada do… "0  "   NE     SE    M           2021      3699 1311599…
+    ##  7  2803906 Malhador    "0  "   NE     SE    M           2021     12653 1310475…
+    ##  8  2804003 Maruim      "0  "   NE     SE    M           2021     17271 1310935…
+    ##  9  2804102 Moita Boni… "0  "   NE     SE    M           2021     11348 1310411…
+    ## 10  2804201 Monte Aleg… "0  "   NE     SE    M           2021     15175 1311328…
     ## # … with 5,587 more rows
 
 ### find\_cod()
