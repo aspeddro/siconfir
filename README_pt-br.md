@@ -19,34 +19,55 @@ install.packages("siconfir")
 
 ou a versão em desenvolvimento:
 
-``` r
-# install.packages("devtools")
-devtools::install_github("pedrocastroo/siconfir")
-```
+    ## Installing package into '/Users/runner/work/_temp/Library'
+    ## (as 'lib' is unspecified)
+
+    ## also installing the dependencies 'credentials', 'zip', 'gitcreds', 'ini', 'fastmap', 'diffobj', 'rematch2', 'clipr', 'gert', 'gh', 'rappdirs', 'rprojroot', 'whisker', 'processx', 'cachem', 'prettyunits', 'xopen', 'brew', 'commonmark', 'Rcpp', 'xml2', 'brio', 'praise', 'ps', 'waldo', 'usethis', 'callr', 'desc', 'fs', 'memoise', 'pkgbuild', 'pkgload', 'rcmdcheck', 'roxygen2', 'rstudioapi', 'rversions', 'sessioninfo', 'testthat', 'withr'
+
+    ## 
+    ## The downloaded binary packages are in
+    ##  /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//Rtmp2AkslZ/downloaded_packages
+
+    ## Using github PAT from envvar GITHUB_PAT
+
+    ## Downloading GitHub repo aspeddro/siconfir@HEAD
+
+    ## 
+    ##      checking for file ‘/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/Rtmp2AkslZ/remotes86ff704f24/aspeddro-siconfir-b4bfe61/DESCRIPTION’ ...  ✔  checking for file ‘/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/Rtmp2AkslZ/remotes86ff704f24/aspeddro-siconfir-b4bfe61/DESCRIPTION’
+    ##   ─  preparing ‘siconfir’:
+    ##      checking DESCRIPTION meta-information ...  ✔  checking DESCRIPTION meta-information
+    ##   ─  checking for LF line-endings in source and make files and shell scripts
+    ##   ─  checking for empty or unneeded directories
+    ## ─  building ‘siconfir_1.0.5.tar.gz’
+    ##      
+    ## 
+
+    ## Installing package into '/Users/runner/work/_temp/Library'
+    ## (as 'lib' is unspecified)
 
 ## Usando
 
--   [get\_fiscal()](#get_fiscal): Relatório de gestão fiscal
--   [get\_budget()](#get_budget): Relatório resumido de execução
+  - [get\_fiscal()](#get_fiscal): Relatório de gestão fiscal
+  - [get\_budget()](#get_budget): Relatório resumido de execução
     orçamentária
--   [get\_annual\_acc()](#get_annual_acc): Declaração de contas anuais
--   [msc\_budget()](#msc_budget): Contas orçamentária, matriz de saldos
+  - [get\_annual\_acc()](#get_annual_acc): Declaração de contas anuais
+  - [msc\_budget()](#msc_budget): Contas orçamentária, matriz de saldos
     contábeis
--   [msc\_control()](#msc_control): Contas de controle, matriz de saldos
+  - [msc\_control()](#msc_control): Contas de controle, matriz de saldos
     contábeis
--   [msc\_equity()](#msc_equity): Contas patrimoniais, matriz de saldos
+  - [msc\_equity()](#msc_equity): Contas patrimoniais, matriz de saldos
     contábeis
--   [report\_status()](#report_status): Extrato de relatórios
+  - [report\_status()](#report_status): Extrato de relatórios
     homologados e matrizes entregues
--   [get\_annex()](#get_annex): Anexos de relatórios por esfera de
+  - [get\_annex()](#get_annex): Anexos de relatórios por esfera de
     governo
--   [get\_info()](#get_info): Informações básicas dos entes da federação
--   [find\_cod()](#find_cod): Encontra informações sobre o estado ou
+  - [get\_info()](#get_info): Informações básicas dos entes da federação
+  - [find\_cod()](#find_cod): Encontra informações sobre o estado ou
     município
 
 Datasets:
 
--   [`br_cods`](#br_cods)
+  - [`br_cods`](#br_cods)
 
 ## Exemplos
 
@@ -221,7 +242,7 @@ Extrato de relatórios homologados e matrizes entregues ao SICONFI:
 siconfir::report_status(year = 2020, cod = 43)
 ```
 
-    ## # A tibble: 118 x 11
+    ## # A tibble: 119 x 11
     ##    exercicio cod_ibge populacao instituicao     entregavel periodo periodicidade
     ##        <int>    <int>     <int> <chr>           <chr>        <int> <chr>        
     ##  1      2020       43  11377239 Assembleia Leg… MSC Agreg…       1 M            
@@ -234,7 +255,7 @@ siconfir::report_status(year = 2020, cod = 43)
     ##  8      2020       43  11377239 Assembleia Leg… MSC Agreg…       8 M            
     ##  9      2020       43  11377239 Assembleia Leg… MSC Agreg…       9 M            
     ## 10      2020       43  11377239 Assembleia Leg… MSC Agreg…      10 M            
-    ## # … with 108 more rows, and 4 more variables: data_status <chr>,
+    ## # … with 109 more rows, and 4 more variables: data_status <chr>,
     ## #   forma_envio <chr>, status_relatorio <chr>, tipo_relatorio <chr>
 
 ### get\_annex()
@@ -269,18 +290,18 @@ siconfir::get_info()
 ```
 
     ## # A tibble: 5,597 x 9
-    ##    cod_ibge ente        capital regiao uf    esfera exercicio populacao cnpj    
-    ##       <int> <chr>       <chr>   <chr>  <chr> <chr>      <int>     <int> <chr>   
-    ##  1  2803302 Japaratuba  "0  "   NE     SE    M           2021     18907 1309378…
-    ##  2  2803401 Japoatã     "0  "   NE     SE    M           2021     13429 1311591…
-    ##  3  2803500 Lagarto     "0  "   NE     SE    M           2021    105221 1312405…
-    ##  4  2803609 Laranjeiras "0  "   NE     SE    M           2021     30080 1312061…
-    ##  5  2803708 Macambira   "0  "   NE     SE    M           2021      6961 1310368…
-    ##  6  2803807 Malhada do… "0  "   NE     SE    M           2021      3699 1311599…
-    ##  7  2803906 Malhador    "0  "   NE     SE    M           2021     12653 1310475…
-    ##  8  2804003 Maruim      "0  "   NE     SE    M           2021     17271 1310935…
-    ##  9  2804102 Moita Boni… "0  "   NE     SE    M           2021     11348 1310411…
-    ## 10  2804201 Monte Aleg… "0  "   NE     SE    M           2021     15175 1311328…
+    ##    cod_ibge ente       capital regiao uf    esfera exercicio populacao cnpj     
+    ##       <int> <chr>      <chr>   <chr>  <chr> <chr>      <int>     <int> <chr>    
+    ##  1  4119806 Planalto   "0  "   SU     PR    M           2021     13431 76460526…
+    ##  2  4119905 Ponta Gro… "0  "   SU     PR    M           2021    355336 76175884…
+    ##  3  4119954 Pontal do… "0  "   SU     PR    M           2021     27915 01609843…
+    ##  4  4120002 Porecatu   "0  "   SU     PR    M           2021     12748 80542764…
+    ##  5  4120101 Porto Ama… "0  "   SU     PR    M           2021      4874 76179837…
+    ##  6  4120150 Porto Bar… "0  "   SU     PR    M           2021      3184 01591618…
+    ##  7  4120200 Porto Rico "0  "   SU     PR    M           2021      2556 75461970…
+    ##  8  4120309 Porto Vit… "0  "   SU     PR    M           2021      4061 75688366…
+    ##  9  4120333 Prado Fer… "0  "   SU     PR    M           2021      3780 01613136…
+    ## 10  4120358 Pranchita  "0  "   SU     PR    M           2021      5095 78113834…
     ## # … with 5,587 more rows
 
 ### find\_cod()
@@ -323,8 +344,8 @@ siconfir::br_cods
 
 ## Recursos
 
--   [SICONFI API](http://apidatalake.tesouro.gov.br/docs/siconfi/)
--   [Manual de Demonstrativos Fiscais 9ª Edição, Tesouro
+  - [SICONFI API](http://apidatalake.tesouro.gov.br/docs/siconfi/)
+  - [Manual de Demonstrativos Fiscais 9ª Edição, Tesouro
     Nacional](https://conteudo.tesouro.gov.br/manuais/index.php?option=com_content&view=categories&id=560&Itemid=675)
 
 ## Contribuindo
@@ -333,6 +354,6 @@ Bugs ou sugestões: abra uma
 [issue](https://github.com/pedrocastroo/siconfir/issues) detalhando o
 problema/sugestão, seja o mais reprodutível.
 
-## Licensa
+## Licença
 
 Este projeto está licensiado sob a licença do MIT

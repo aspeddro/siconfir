@@ -21,20 +21,12 @@ install.packages("siconfir")
 
 or the development version from GitHub:
 
-``` r
-install.packages("devtools")
-```
-
     ## Installing package into '/Users/runner/work/_temp/Library'
     ## (as 'lib' is unspecified)
 
     ## 
     ## The downloaded binary packages are in
-    ##  /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpYxduVM/downloaded_packages
-
-``` r
-devtools::install_github("aspeddro/siconfir")
-```
+    ##  /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//Rtmp2AkslZ/downloaded_packages
 
     ## Using github PAT from envvar GITHUB_PAT
 
