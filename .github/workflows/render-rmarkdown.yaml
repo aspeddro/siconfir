@@ -1,7 +1,7 @@
 on:
   push:
     paths:
-      - '**.Rmd'
+      - 'README.Rmd'
 
 name: Render README
 
@@ -27,5 +27,5 @@ jobs:
         run: |
           git config --local user.email "$GITHUB_ACTOR"
           git config --local user.name "$GITHUB_ACTOR@users.noreply.github.com"
-          git commit README.md README_pt-br.md -m 'Re-build READMEs' || echo "No changes to commit"
+          git commit README.md -m 'Re-build READMEs' || echo "No changes to commit"
           git push origin || echo "No changes to commit"
