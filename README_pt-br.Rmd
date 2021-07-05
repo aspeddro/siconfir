@@ -21,7 +21,7 @@ install.packages("siconfir")
 
 ou a versão em desenvolvimento:
 
-```{r eval = TRUE}
+```{r echo = FALSE}
 install.packages("devtools")
 devtools::install_github("aspeddro/siconfir")
 ```
