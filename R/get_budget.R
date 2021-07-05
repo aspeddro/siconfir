@@ -33,21 +33,23 @@
 #' @note
 #' Brazilian Public Sector Accounting and Tax Information System (Siconfi):
 #' \url{http://apidatalake.tesouro.gov.br/docs/siconfi/}
+#' @importFrom rlang is_null
 #' @export
 
 get_budget <- function(year,
-                      period,
-                      cod,
-                      simple = FALSE,
-                      annex = NULL,
-                      verbose = FALSE) {
+                       period,
+                       cod,
+                       simple = FALSE,
+                       annex = NULL,
+                       verbose = FALSE) {
+
   get(
     type = "rreo",
     an_exercicio = year,
     nr_periodo = period,
     id_ente = cod,
     co_tipo_demonstrativo = if (simple) "RREO Simplificado" else "RREO",
-    no_anexo = if (!is.null(annex)) paste0("RREO-Anexo ", annex) else annex,
+    no_anexo = if (!rlang::is_null(annex)) paste0("RREO-Anexo ", annex) else annex,
     verbose = verbose
   )
 }

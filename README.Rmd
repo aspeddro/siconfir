@@ -23,9 +23,9 @@ install.packages("siconfir")
 
 or the development version from GitHub:
 
-```{r eval = F}
-# install.packages("devtools")
-devtools::install_github("pedrocastroo/siconfir")
+```{r eval = TRUE}
+install.packages("devtools")
+devtools::install_github("aspeddro/siconfir")
 ```
 
 ## Using

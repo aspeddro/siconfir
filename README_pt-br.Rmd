@@ -21,9 +21,9 @@ install.packages("siconfir")
 
 ou a versão em desenvolvimento:
 
-```{r eval = F}
-# install.packages("devtools")
-devtools::install_github("pedrocastroo/siconfir")
+```{r eval = TRUE}
+install.packages("devtools")
+devtools::install_github("aspeddro/siconfir")
 ```
 
 ## Usando
@@ -148,6 +148,6 @@ siconfir::br_cods
 
 Bugs ou sugestões: abra uma [issue](https://github.com/pedrocastroo/siconfir/issues) detalhando o problema/sugestão, seja o mais reprodutível.
 
-## Licensa
+## Licença
 
 Este projeto está licensiado sob a licença do MIT

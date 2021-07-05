@@ -8,5 +8,5 @@
 #' @export
 
 get_info <- function(verbose = FALSE) {
-  req(type = "entes", query = NULL, verbose = verbose)
+  request(type = "entes", query = NULL, verbose = verbose)
 }

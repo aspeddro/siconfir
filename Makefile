@@ -1,25 +1,29 @@
-R = Rscript
+R = R
+.PHONY: tests
 
 doc:
-	$(R) -e 'devtools::document()'
+	$(R) -e -q 'devtools::document()'
 
 readme:
-	$(R) -e 'library(rmarkdown); rmarkdown::render("README.Rmd", output_format = "github_document"); rmarkdown::render("README_pt-br.Rmd", output_format = "github_document")'
+	$(R) -e -q 'library(rmarkdown); rmarkdown::render("README.Rmd", output_format = "github_document"); rmarkdown::render("README_pt-br.Rmd", output_format = "github_document")'
 
 check:
-	$(R) -e 'devtools::check(run_dont_test = TRUE, error_on = c("error")); devtools::check_man(); devtools::check_rhub();'
+	$(R) -e -q 'devtools::check(run_dont_test = FALSE, error_on = c("error")); devtools::check_man();'
+
+tests:
+	$(R) -e -q 'devtools::test()'
 
 datasets:
-	$(R) utils/build_datasets.R
+	Rscript utils/build_datasets.R
 
 build:
-	$(R) -e 'devtools::build(path = ".")'
+	$(R) -e -q 'devtools::build(path = ".")'
 
 install:
-	$(R) -e 'devtools::install()'
+	$(R) -e -q 'devtools::install()'
 
 remove:
-	$(R) -e 'remove.packages("siconfir")'
+	$(R) -e -q 'remove.packages("siconfir")'
 
 release:
-	$(R) -e 'devtools::release()'
+	$(R) -e -q 'devtools::release(check = TRUE)'

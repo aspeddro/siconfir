@@ -33,15 +33,16 @@
 #' @note
 #' Brazilian Public Sector Accounting and Tax Information System (Siconfi):
 #' \url{http://apidatalake.tesouro.gov.br/docs/siconfi/}
+#' @importFrom rlang is_null
 #' @export
 
 get_fiscal <- function(year,
-                      period,
-                      cod,
-                      freq = "Q",
-                      annex = NULL,
-                      power = c("E", "L", "J", "M", "D"),
-                      verbose = FALSE) {
+                       period,
+                       cod,
+                       freq = "Q",
+                       annex = NULL,
+                       power = c("E", "L", "J", "M", "D"),
+                       verbose = FALSE) {
   get(
     type = "rgf",
     an_exercicio = year,
@@ -49,7 +50,7 @@ get_fiscal <- function(year,
     id_ente = cod,
     in_periodicidade = freq,
     co_tipo_demonstrativo = if (freq == "Q") "RGF" else "RGF Simplificado",
-    no_anexo = if (!is.null(annex)) paste0("RGF-Anexo 0", annex) else annex,
+    no_anexo = if (!rlang::is_null(annex)) paste0("RGF-Anexo 0", annex) else annex,
     co_poder = power,
     verbose = verbose
   )

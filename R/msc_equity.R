@@ -27,17 +27,6 @@ msc_equity <- function(year,
                        class,
                        value,
                        verbose = FALSE) {
-  if (!(matrix_type %in% c("MSCC", "MSCE"))) {
-    stop("Argument matrix_type must be 'MSCC' or 'MSCE'")
-  }
-
-  if (!(class %in% 1:4)) {
-    stop("Argument class must be 1, 2, 3 or 4")
-  }
-
-  if (!(value %in% c("beginning_balance", "period_change", "ending_balance"))) {
-    stop("Argument matrix_type must be 'beginning_balance', 'period_change' or 'ending_balance'")
-  }
 
   get(
     type = "msc_patrimonial",

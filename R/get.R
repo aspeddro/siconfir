@@ -1,11 +1,9 @@
 #' @importFrom dplyr bind_rows
-#' @importFrom purrr map_lgl pmap cross_df reduce
+#' @importFrom purrr map_lgl pmap cross_df reduce keep
+#' @importFrom rlang is_null dots_list
 
 get <- function(type, verbose, ...) {
-  rest <- list(...)
-  querys <- rest[!purrr::map_lgl(rest, is.null)]
-
-  purrr::cross_df(querys) %>%
-    purrr::pmap(., ~ req(type = type, query = list(...), verbose = verbose)) %>%
-    purrr::reduce(dplyr::bind_rows)
+  purrr::keep(rlang::dots_list(...), ~!rlang::is_null(.x)) %>%
+    purrr::cross() %>%
+    purrr::map_df(~request(type = type, query = .x, verbose = verbose))
 }

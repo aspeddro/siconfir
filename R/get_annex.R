@@ -8,5 +8,5 @@
 #' @export
 
 get_annex <- function(verbose = FALSE) {
-  req(type = "anexos-relatorios", query = NULL, verbose = verbose)
+  request(type = "anexos-relatorios", query = NULL, verbose = verbose)
 }
