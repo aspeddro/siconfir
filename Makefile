@@ -6,6 +6,7 @@ doc:
 
 readme:
 	$(R) -e -q 'library(rmarkdown); rmarkdown::render("README.Rmd", output_format = "github_document"); rmarkdown::render("README_pt-br.Rmd", output_format = "github_document")'
+	rm *.html
 
 check:
 	$(R) -e -q 'devtools::check(run_dont_test = FALSE, error_on = c("error")); devtools::check_man();'
