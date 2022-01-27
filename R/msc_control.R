@@ -27,7 +27,6 @@ msc_control <- function(year,
                         class,
                         value,
                         verbose = FALSE) {
-
   get(
     type = "msc_controle",
     an_referencia = year,

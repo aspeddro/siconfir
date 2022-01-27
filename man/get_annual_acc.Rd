@@ -41,7 +41,9 @@ Brazilian Public Sector Accounting and Tax Information System (Siconfi):
 \url{http://apidatalake.tesouro.gov.br/docs/siconfi/}
 }
 \examples{
-\donttest{get_annual_acc(year = 2019, cod = 35)}
+\donttest{
+get_annual_acc(year = 2019, cod = 35)
+}
 }
 \seealso{
 \url{https://www.gov.br/secretariadegoverno/pt-br/portalfederativo/guiainicio/prefeito/trilhas-100-dias-de-governo/dca-declaracao-de-contas-anuais}

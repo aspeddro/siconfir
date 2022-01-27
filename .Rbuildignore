@@ -13,3 +13,5 @@
 ^CRAN-RELEASE$
 ^cran-comments\.md$
 ^\.github$
+^CITATION.cff$
+^CONTRIBUTING.md$

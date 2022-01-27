@@ -11,6 +11,7 @@ get_fiscal(
   freq = "Q",
   annex = NULL,
   power = c("E", "L", "J", "M", "D"),
+  sphere = NULL,
   verbose = FALSE
 )
 }
@@ -38,6 +39,8 @@ executive \code{"E"}, legislative \code{"L"}, judiciary \code{"J"},
 public ministry \code{"M"}, Public defense \code{"D"}.
 Default is \code{c("E", "L", "J", "M", "D")}}
 
+\item{sphere}{is a string vector. Sphere filter "M" = Municipalities, "E" = States and "DF", "U" = Union and "C" = Consortium. Default is \code{NULL}}
+
 \item{verbose}{is a logical. Enable verbose mode. Default is \code{FALSE}}
 }
 \value{
@@ -59,8 +62,12 @@ Brazilian Public Sector Accounting and Tax Information System (Siconfi):
 \url{http://apidatalake.tesouro.gov.br/docs/siconfi/}
 }
 \examples{
-\donttest{get_fiscal(year = 2019, period = 1:3, cod = 35, power = "E")}
-\donttest{get_fiscal(year = 2017, period = 2, annex = 1, cod = 1)}
+\donttest{
+get_fiscal(year = 2019, period = 1:3, cod = 35, power = "E")
+}
+\donttest{
+get_fiscal(year = 2017, period = 2, annex = 1, cod = 1)
+}
 }
 \seealso{
 \url{https://conteudo.tesouro.gov.br/manuais/index.php?option=com_content&view=article&id=1344:04-00-01-01-conteudo-do-relatorio&catid=677&Itemid=675}

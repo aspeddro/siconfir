@@ -27,7 +27,6 @@ msc_budget <- function(year,
                        class,
                        value,
                        verbose = FALSE) {
-
   get(
     type = "msc_orcamentaria",
     an_referencia = year,

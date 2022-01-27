@@ -9,7 +9,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 Pacote R para acessar dados fiscais e contábeis de estados e municípios brasileiros fornecido pelo Sistema de Informações Contábeis e Tributárias do Setor Público Brasileiro (SICONFI/[Tesouro Nacional](https://www.gov.br/tesouronacional/))
 
-Esse pacote está disponível para [**Python**](https://github.com/pedrocastroo/siconfipy)
+Esse pacote está disponível para [**Python**](https://github.com/aspeddro/siconfipy)
 
 ## Instalação
 
@@ -21,12 +21,12 @@ install.packages("siconfir")
 
 ou a versão em desenvolvimento:
 
-```{r warning = FALSE, message = FALSE}
-install.packages("devtools")
-devtools::install_github("aspeddro/siconfir")
+```{r warning = FALSE, message = FALSE, echo = FALSE}
+install.packages("remotes")
+remotes::install_github("aspeddro/siconfir")
 ```
 
-## Usando
+## Uso
 
 - [get_fiscal()](#get_fiscal): Relatório de gestão fiscal
 - [get_budget()](#get_budget): Relatório resumido de execução orçamentária
@@ -146,7 +146,7 @@ siconfir::br_cods
 
 ## Contribuindo
 
-Bugs ou sugestões: abra uma [issue](https://github.com/pedrocastroo/siconfir/issues) detalhando o problema/sugestão, seja o mais reprodutível.
+Bugs ou sugestões: abra uma [issue](https://github.com/aspeddro/siconfir/issues) detalhando o problema/sugestão, seja o mais reprodutível.
 
 ## Licença
 

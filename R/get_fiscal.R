@@ -22,14 +22,19 @@
 #' executive \code{"E"}, legislative \code{"L"}, judiciary \code{"J"},
 #' public ministry \code{"M"}, Public defense \code{"D"}.
 #' Default is \code{c("E", "L", "J", "M", "D")}
+#' @param sphere is a string vector. Sphere filter "M" = Municipalities, "E" = States and "DF", "U" = Union and "C" = Consortium. Default is \code{NULL}
 #' @param verbose is a logical. Enable verbose mode. Default is \code{FALSE}
 #' @return \code{tibble}
 #' @details
 #' For more details on the parameter \code{cod} see the column \code{cod_ibge}
 #' of the function \code{\link{get_info}}
 #' @examples
-#' \donttest{get_fiscal(year = 2019, period = 1:3, cod = 35, power = "E")}
-#' \donttest{get_fiscal(year = 2017, period = 2, annex = 1, cod = 1)}
+#' \donttest{
+#' get_fiscal(year = 2019, period = 1:3, cod = 35, power = "E")
+#' }
+#' \donttest{
+#' get_fiscal(year = 2017, period = 2, annex = 1, cod = 1)
+#' }
 #' @note
 #' Brazilian Public Sector Accounting and Tax Information System (Siconfi):
 #' \url{http://apidatalake.tesouro.gov.br/docs/siconfi/}
@@ -42,6 +47,7 @@ get_fiscal <- function(year,
                        freq = "Q",
                        annex = NULL,
                        power = c("E", "L", "J", "M", "D"),
+                       sphere = NULL,
                        verbose = FALSE) {
   get(
     type = "rgf",
@@ -50,8 +56,13 @@ get_fiscal <- function(year,
     id_ente = cod,
     in_periodicidade = freq,
     co_tipo_demonstrativo = if (freq == "Q") "RGF" else "RGF Simplificado",
-    no_anexo = if (!rlang::is_null(annex)) paste0("RGF-Anexo 0", annex) else annex,
+    no_anexo = if (!rlang::is_null(annex)) {
+      paste0("RGF-Anexo 0", annex)
+    } else {
+      annex
+    },
     co_poder = power,
+    co_esfera = sphere,
     verbose = verbose
   )
 }

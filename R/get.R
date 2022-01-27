@@ -3,7 +3,7 @@
 #' @importFrom rlang is_null dots_list
 
 get <- function(type, verbose, ...) {
-  purrr::keep(rlang::dots_list(...), ~!rlang::is_null(.x)) %>%
+  purrr::keep(rlang::dots_list(...), ~ !rlang::is_null(.x)) %>%
     purrr::cross() %>%
-    purrr::map_df(~request(type = type, query = .x, verbose = verbose))
+    purrr::map_df(~ request(type = type, query = .x, verbose = verbose))
 }

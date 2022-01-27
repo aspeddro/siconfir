@@ -4,7 +4,15 @@
 \alias{get_budget}
 \title{Budget execution summary report}
 \usage{
-get_budget(year, period, cod, simple = FALSE, annex = NULL, verbose = FALSE)
+get_budget(
+  year,
+  period,
+  cod,
+  simple = FALSE,
+  annex = NULL,
+  sphere = NULL,
+  verbose = FALSE
+)
 }
 \arguments{
 \item{year}{is a numeric vector}
@@ -21,6 +29,8 @@ Default is \code{FALSE}}
 
 \item{annex}{is a character vector. Default is \code{NULL},
 it will get all attachments.}
+
+\item{sphere}{is a string vector. Sphere filter "M" = Municipalities, "E" = States and "DF", "U" = Union and "C" = Consortium. Default is \code{NULL}}
 
 \item{verbose}{is a logical. Enable verbose mode. Default is \code{FALSE}}
 }
@@ -51,7 +61,9 @@ Brazilian Public Sector Accounting and Tax Information System (Siconfi):
 \url{http://apidatalake.tesouro.gov.br/docs/siconfi/}
 }
 \examples{
-\donttest{get_budget(year = 2020, period = 1, cod = 29)}
+\donttest{
+get_budget(year = 2020, period = 1, cod = 29)
+}
 }
 \seealso{
 \url{https://conteudo.tesouro.gov.br/manuais/index.php?option=com_content&view=article&id=1180:03-00-01-introducao&catid=601&Itemid=675}

@@ -11,21 +11,21 @@ knitr::opts_chunk$set(echo = TRUE)
 
 R package to access tax and accounting data of Brazilian states and municipalities provided by the Brazilian Public Sector Accounting and Tax Information System (SICONFI/[National Treasure](https://www.gov.br/tesouronacional/en?set_language=en))
 
-This package is available for [**Python**](https://github.com/pedrocastroo/siconfipy)
+This package is available for [**Python**](https://github.com/aspeddro/siconfipy)
 
 ## Installation
 
 Install from [CRAN](https://cran.r-project.org/package=siconfir):
 
-```{r eval = F}
+```{r eval = FALSE}
 install.packages("siconfir")
 ```
 
 or the development version from GitHub:
 
-```{r warning = FALSE, message = FALSE}
-install.packages("devtools")
-devtools::install_github("aspeddro/siconfir")
+```{r warning = FALSE, message = FALSE, echo = FALSE}
+install.packages("remotes")
+remotes::install_github("aspeddro/siconfir")
 ```
 
 ## Using
@@ -149,7 +149,7 @@ siconfir::br_cods
 
 ## Contributing
 
-Bugs or suggestions: open an [issue](https://github.com/pedrocastroo/siconfir/issues) detailing the problem/suggestion, be as reproducible as possible.
+Bugs or suggestions: open an [issue](https://github.com/aspeddro/siconfir/issues) detailing the problem/suggestion, be as reproducible as possible.
 
 ## License
 

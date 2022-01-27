@@ -1,5 +1,5 @@
 test_that("find_cod for 35", {
-  expect_equal(nrow(find_cod("São Paulo")), 5)
+  expect_true(nrow(find_cod("São Paulo")) == 5)
 })
 
 test_that("find_cod error", {
@@ -7,55 +7,101 @@ test_that("find_cod error", {
 })
 
 test_that("get_annex", {
-  expect_s3_class(get_annex(), "data.frame")
+  expect_true(nrow(get_annex()) > 0)
 })
 
 test_that("get_annual_acc", {
-  expect_s3_class(get_annual_acc(year = 2020, cod = 17), "data.frame")
-  expect_s3_class(
-    get_annual_acc(year = 2018, cod = 35, annex = "Anexo I-AB"),
-    "data.frame"
+  expect_true(
+    nrow(get_annual_acc(
+      year = 2019,
+      cod = 17
+    )) > 0
   )
-  expect_s3_class(
-    get_annual_acc(year = 2017, cod = 11, annex = c("DCA-Anexo I-C", "DCA-Anexo I-D")),
-    "data.frame"
+  expect_true(
+    nrow(get_annual_acc(year = 2018, cod = 35)) > 0
+  )
+  expect_true(
+    nrow(get_annual_acc(
+      year = 2017,
+      cod = 11,
+      annex = c("DCA-Anexo I-C", "DCA-Anexo I-D")
+    )) > 0
   )
 })
 
 test_that("get_budget", {
-  expect_s3_class(get_budget(year = 2020, period = 3, cod = 29), "data.frame")
+  expect_true(
+    nrow(get_budget(
+      year = 2020,
+      period = 1,
+      annex = "01",
+      cod = 29,
+      sphere = "E"
+    )) > 0
+  )
 })
 
 test_that("get_fiscal", {
-  expect_s3_class(get_fiscal(year = 2020, period = 1, cod = 1, power = "E"), "data.frame")
+  expect_true(
+    nrow(get_fiscal(
+      year = 2020,
+      period = 1,
+      cod = 1,
+      power = "E"
+    )) > 0
+  )
   expect_error(get_fiscal(year = 2020, period = 4))
 })
 
 test_that("get_info", {
-  expect_s3_class(get_info(), "data.frame")
+  expect_true(nrow(get_info()) > 0)
 })
 
 test_that("msc_budget", {
-  expect_s3_class(
-    msc_budget(year = 2020, month = 1, cod = 1, matrix_type = "MSCC", class = 5, value = "period_change"),
-    "data.frame"
+  expect_true(
+    nrow(
+      msc_budget(
+        year = 2020,
+        month = 1,
+        cod = 1,
+        matrix_type = "MSCC",
+        class = 5,
+        value = "period_change"
+      )
+    ) > 0
   )
 })
 
 test_that("msc_control", {
-  expect_s3_class(
-    msc_control(year = 2020, month = 1, cod = 53, matrix_type = "MSCC", class = 7, value = "ending_balance"),
-    "data.frame"
+  expect_true(
+    nrow(
+      msc_control(
+        year = 2020,
+        month = 1,
+        cod = 53,
+        matrix_type = "MSCC",
+        class = 7,
+        value = "ending_balance"
+      )
+    ) > 0
   )
 })
 
 test_that("msc_equity", {
-  expect_s3_class(
-    msc_equity(year = 2020, month = 1:2, cod = 17, matrix_type = "MSCC", class = 1, value = "beginning_balance"),
-    "data.frame"
+  expect_true(
+    nrow(
+      msc_equity(
+        year = 2020,
+        month = 1:2,
+        cod = 17,
+        matrix_type = "MSCC",
+        class = 1,
+        value = "beginning_balance"
+      )
+    ) > 0
   )
 })
 
 test_that("report_status", {
-  expect_s3_class(report_status(year = 2018, cod = 53), "data.frame")
+  expect_true(nrow(report_status(year = 2018, cod = 53)) > 0)
 })

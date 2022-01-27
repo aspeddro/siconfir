@@ -21,7 +21,9 @@
 #' For more details on the parameter \code{cod} see the column \code{cod_ibge}
 #' of the function \code{\link{get_info}}
 #' @examples
-  #' \donttest{get_annual_acc(year = 2019, cod = 35)}
+#' \donttest{
+#' get_annual_acc(year = 2019, cod = 35)
+#' }
 #' @note
 #' Brazilian Public Sector Accounting and Tax Information System (Siconfi):
 #' \url{http://apidatalake.tesouro.gov.br/docs/siconfi/}

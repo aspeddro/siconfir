@@ -27,7 +27,6 @@ msc_equity <- function(year,
                        class,
                        value,
                        verbose = FALSE) {
-
   get(
     type = "msc_patrimonial",
     an_referencia = year,
