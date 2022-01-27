@@ -25,7 +25,12 @@ jobs:
 
       - name: Install dependencies
         run: |
-          install.packages(c("rmarkdown"))
+          install.packages(c("rmarkdown", "devtools"))
+        shell: Rscript {0}
+
+      - name: Install package
+        run: |
+          devtools::install()
         shell: Rscript {0}
 
       - name: Render Rmarkdown files
