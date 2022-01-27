@@ -40,10 +40,3 @@ jobs:
           options(crayon.enabled = TRUE)
           rcmdcheck::rcmdcheck(args = c("--no-manual", "--as-cran", "--no-examples", "--no-tests"), error_on = "error")
         shell: Rscript {0}
-
-      - name: Commit
-        run: |
-          git config --local user.name "$GITHUB_ACTOR"
-          git config --local user.email "$GITHUB_ACTOR@users.noreply.github.com"
-          git commit data/ -m 'dataset: generate' || echo "No changes to commit"
-          git push origin || echo "No changes to commit"
