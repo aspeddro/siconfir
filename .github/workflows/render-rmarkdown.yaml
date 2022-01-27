@@ -1,30 +1,35 @@
 on:
   push:
-    branches: dev
+    branches:
+      - dev
+      - main
 
-name: Render README
+name: render-rmarkdown
 
 jobs:
-  render:
-    name: Render README
-    runs-on: macOS-latest
+  render-rmarkdown:
+    runs-on: ubuntu-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - uses: actions/checkout@v2
-      - uses: r-lib/actions/setup-r@v1
-      - uses: r-lib/actions/setup-pandoc@v1
-      - name: Install rmarkdown, remotes, and the local package
+      - name: Checkout repo
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - uses: r-lib/actions/setup-pandoc@v2
+
+      - uses: r-lib/actions/setup-r@v2
+
+      - uses: r-lib/actions/setup-renv@v2
+
+      - name: Render Rmarkdown files
         run: |
-          install.packages("remotes")
-          remotes::install_local(".")
-          remotes::install_cran("rmarkdown")
-        shell: Rscript {0}
-      - name: Render README
-        run: Rscript -e 'for (i in list.files(pattern = ".Rmd")) { rmarkdown::render(i) }'
+          RMD_PATH=($(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep '[.]Rmd$'))
+          Rscript -e 'for (f in commandArgs(TRUE)) if (file.exists(f)) rmarkdown::render(f)' ${RMD_PATH[*]}
       - name: Commit results
         run: |
-          git config --local user.email "$GITHUB_ACTOR"
-          git config --local user.name "$GITHUB_ACTOR@users.noreply.github.com"
-          git commit *.md -m 'Build READMEs' || echo "No changes to commit"
+          git config --local user.name "$GITHUB_ACTOR"
+          git config --local user.email "$GITHUB_ACTOR@users.noreply.github.com"
+          git commit ${RMD_PATH[*]/.Rmd/.md} -m 'Re-build Rmarkdown files' || echo "No changes to commit"
           git push origin || echo "No changes to commit"
