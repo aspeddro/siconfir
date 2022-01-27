@@ -13,5 +13,7 @@ get_info() %>%
       cod_ibge == 17 ~ "NO",
       TRUE ~ as.character(regiao)
     )
-  ) %>%
-  usethis::use_data(br_cods, overwrite = TRUE)
+  ) -> br_cods
+
+
+usethis::use_data(br_cods, br_cods, overwrite = TRUE)
