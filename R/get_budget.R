@@ -19,6 +19,7 @@
 #' Default is \code{FALSE}
 #' @param annex is a character vector. Default is \code{NULL},
 #' it will get all attachments.
+#' @param sphere is a string vector. Sphere filter "M" = Municipalities, "E" = States and "DF", "U" = Union and "C" = Consortium. Default is \code{NULL}
 #' @param verbose is a logical. Enable verbose mode. Default is \code{FALSE}
 #' @return \code{tibble}
 #' @details
@@ -29,25 +30,34 @@
 #' For more details on the parameter \code{cod} see the column \code{cod_ibge}
 #' of the function \code{\link{get_info}}
 #' @examples
-#' \donttest{get_budget(year = 2020, period = 1, cod = 29)}
+#' \donttest{
+#' get_budget(year = 2020, period = 1, cod = 29)
+#' }
 #' @note
 #' Brazilian Public Sector Accounting and Tax Information System (Siconfi):
 #' \url{http://apidatalake.tesouro.gov.br/docs/siconfi/}
+#' @importFrom rlang is_null
 #' @export
 
 get_budget <- function(year,
-                      period,
-                      cod,
-                      simple = FALSE,
-                      annex = NULL,
-                      verbose = FALSE) {
+                       period,
+                       cod,
+                       simple = FALSE,
+                       annex = NULL,
+                       sphere = NULL,
+                       verbose = FALSE) {
   get(
     type = "rreo",
     an_exercicio = year,
     nr_periodo = period,
     id_ente = cod,
     co_tipo_demonstrativo = if (simple) "RREO Simplificado" else "RREO",
-    no_anexo = if (!is.null(annex)) paste0("RREO-Anexo ", annex) else annex,
+    no_anexo = if (!rlang::is_null(annex)) {
+      paste0("RREO-Anexo ", annex)
+    } else {
+      annex
+    },
+    co_esfera = sphere,
     verbose = verbose
   )
 }

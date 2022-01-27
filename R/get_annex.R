@@ -4,9 +4,11 @@
 #' @param verbose is a logical. Enable verbose mode. Default is \code{FALSE}
 #' @return \code{tibble}
 #' @examples
-#' \donttest{get_annex()}
+#' \donttest{
+#' get_annex()
+#' }
 #' @export
 
 get_annex <- function(verbose = FALSE) {
-  req(type = "anexos-relatorios", query = NULL, verbose = verbose)
+  request(type = "anexos-relatorios", query = NULL, verbose = verbose)
 }

@@ -4,29 +4,46 @@ on:
   push:
     branches:
       - main
-      - master
   pull_request:
     branches:
       - main
-      - master
 
 name: R-CMD-check
 
 jobs:
   R-CMD-check:
-    runs-on: macOS-latest
+    runs-on: ubuntu-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      R_KEEP_PKG_SOURCE: yes
     steps:
       - uses: actions/checkout@v2
-      - uses: r-lib/actions/setup-r@v1
+
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          use-public-rspm: true
+
       - name: Install dependencies
         run: |
-          install.packages(c("remotes", "rcmdcheck"))
+          install.packages(c("remotes", "rcmdcheck", "lintr", "devtools", "styler"))
           remotes::install_deps(dependencies = TRUE)
         shell: Rscript {0}
+
+      - name: Format and Lint
+        run: |
+          styler::style_dir()
+          lintr::lint_dir()
+        shell: Rscript {0}
+
       - name: Check
         run: |
           options(crayon.enabled = TRUE)
-          rcmdcheck::rcmdcheck(args = c("--no-manual", "--as-cran", "--no-examples"), error_on = "error")
+          rcmdcheck::rcmdcheck(args = c("--no-manual", "--as-cran", "--no-examples", "--no-tests"), error_on = "error")
         shell: Rscript {0}
+
+      - name: Commit
+        run: |
+          git config --local user.name "$GITHUB_ACTOR"
+          git config --local user.email "$GITHUB_ACTOR@users.noreply.github.com"
+          git commit data/ -m 'dataset: generate' || echo "No changes to commit"
+          git push origin || echo "No changes to commit"

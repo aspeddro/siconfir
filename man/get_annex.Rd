@@ -17,5 +17,7 @@ Refers to the annexes to each of the reports/statements grouped
 by sphere of government
 }
 \examples{
-\donttest{get_annex()}
+\donttest{
+get_annex()
+}
 }
