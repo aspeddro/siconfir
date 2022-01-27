@@ -10,7 +10,6 @@
 #' @export
 
 find_cod <- function(query) {
-
   if (!rlang::is_character(query)) {
     rlang::abort("Argument `query` must be a character")
   }

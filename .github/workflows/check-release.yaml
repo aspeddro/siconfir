@@ -27,17 +27,18 @@ jobs:
 
       - name: Install dependencies
         run: |
-          install.packages(c("remotes", "rcmdcheck", "lintr"))
+          install.packages(c("remotes", "rcmdcheck", "lintr", "devtools", "styler"))
           remotes::install_deps(dependencies = TRUE)
         shell: Rscript {0}
 
-      - name: Lint root directory
+      - name: Format and Lint
         run: |
+          styler::style_dir()
           lintr::lint_dir()
         shell: Rscript {0}
 
       - name: Check
         run: |
           options(crayon.enabled = TRUE)
-          rcmdcheck::rcmdcheck(args = c("--no-manual", "--as-cran", "--no-examples"), error_on = "error")
+          rcmdcheck::rcmdcheck(args = c("--no-manual", "--as-cran", "--no-examples", "--no-tests"), error_on = "error")
         shell: Rscript {0}
