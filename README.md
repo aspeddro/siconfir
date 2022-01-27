@@ -4,7 +4,7 @@
 
 R package to access tax and accounting data of Brazilian states and municipalities provided by the Brazilian Public Sector Accounting and Tax Information System (SICONFI/[National Treasure](https://www.gov.br/tesouronacional/en?set_language=en))
 
-This package is available for [**Python**](https://github.com/pedrocastroo/siconfipy)
+This package is available for [**Python**](https://github.com/aspeddro/siconfipy)
 
 ## Installation
 

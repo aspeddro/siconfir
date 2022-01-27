@@ -2,7 +2,7 @@
 
 Pacote R para acessar dados fiscais e contábeis de estados e municípios brasileiros fornecido pelo Sistema de Informações Contábeis e Tributárias do Setor Público Brasileiro (SICONFI/[Tesouro Nacional](https://www.gov.br/tesouronacional/))
 
-Esse pacote está disponível para [**Python**](https://github.com/pedrocastroo/siconfipy)
+Esse pacote está disponível para [**Python**](https://github.com/aspeddro/siconfipy)
 
 ## Instalação
 
