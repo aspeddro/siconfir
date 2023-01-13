@@ -1,11 +1,12 @@
-expect_errors <- list(
-  curl_fetch_memory = "Could not resolve host: apidatalake.tesouro.gov.br"
+expect_errors <- c(
+  curl_fetch_memory = "Could not resolve host: apidatalake.tesouro.gov.br",
+  time_out = "Timeout was reached: [apidatalake.tesouro.gov.br] Connection timeout after 10000 ms"
 )
 
 library(magrittr, include.only = "%>%")
 
 #' To test functions that might throw an error
-expect_with_exception <- function(fn, args = NULL, assert, error) {
+expect_with_exception <- function(fn, args = NULL, assert) {
   params_is_null <- rlang::is_null(args)
   result <- tryCatch(
     if (params_is_null) {
@@ -22,7 +23,7 @@ expect_with_exception <- function(fn, args = NULL, assert, error) {
       result$parent$message
     }
 
-    testthat::expect_equal(error_reason, error)
+    testthat::expect_true(error_reason %in% expect_errors)
   } else {
     testthat::expect_true(assert(result))
   }
@@ -42,8 +43,7 @@ test_that("find_cod error", {
 test_that("get_annex", {
   get_annex %>%
     expect_with_exception(
-      assert = function(df) (df %>% nrow()) > 0,
-      error = expect_errors$curl_fetch_memory
+      assert = function(df) (df %>% nrow()) > 0
     )
 })
 
@@ -51,15 +51,13 @@ test_that("get_annual_acc", {
   get_annual_acc %>%
     expect_with_exception(
       args = list(year = 2019, cod = 17),
-      assert = function(df) (df %>% nrow()) > 0,
-      error = expect_errors$curl_fetch_memory
+      assert = function(df) (df %>% nrow()) > 0
     )
 
   get_annual_acc %>%
     expect_with_exception(
       args = list(year = 2018, cod = 35),
-      assert = function(df) (df %>% nrow()) > 0,
-      error = expect_errors$curl_fetch_memory
+      assert = function(df) (df %>% nrow()) > 0
     )
 
   get_annual_acc %>%
@@ -69,8 +67,7 @@ test_that("get_annual_acc", {
         cod = 11,
         annex = c("DCA-Anexo I-C", "DCA-Anexo I-D")
       ),
-      assert = function(df) (df %>% nrow()) > 0,
-      error = expect_errors$curl_fetch_memory
+      assert = function(df) (df %>% nrow()) > 0
     )
 })
 
@@ -84,8 +81,7 @@ test_that("get_budget", {
         cod = 29,
         sphere = "E"
       ),
-      assert = function(df) (df %>% nrow()) > 0,
-      error = expect_errors$curl_fetch_memory
+      assert = function(df) (df %>% nrow()) > 0
     )
 })
 
@@ -98,8 +94,7 @@ test_that("get_fiscal", {
         cod = 1,
         power = "E"
       ),
-      assert = function(df) (df %>% nrow()) > 0,
-      error = expect_errors$curl_fetch_memory
+      assert = function(df) (df %>% nrow()) > 0
     )
 
   expect_error(get_fiscal(year = 2020, period = 4))
@@ -108,8 +103,7 @@ test_that("get_fiscal", {
 test_that("get_info", {
   get_info %>%
     expect_with_exception(
-      assert = function(df) (df %>% nrow()) == 5597,
-      error = expect_errors$curl_fetch_memory
+      assert = function(df) (df %>% nrow()) == 5597
     )
 })
 
@@ -124,8 +118,7 @@ test_that("msc_budget", {
         class = 5,
         value = "period_change"
       ),
-      assert = function(df) (df %>% nrow()) > 0,
-      error = expect_errors$curl_fetch_memory
+      assert = function(df) (df %>% nrow()) > 0
     )
 })
 
@@ -140,8 +133,7 @@ test_that("msc_control", {
         class = 7,
         value = "ending_balance"
       ),
-      assert = function(df) (df %>% nrow()) > 0,
-      error = expect_errors$curl_fetch_memory
+      assert = function(df) (df %>% nrow()) > 0
     )
 })
 
@@ -156,8 +148,7 @@ test_that("msc_equity", {
         class = 1,
         value = "beginning_balance"
       ),
-      assert = function(df) (df %>% nrow()) > 0,
-      error = expect_errors$curl_fetch_memory
+      assert = function(df) (df %>% nrow()) > 0
     )
 })
 
@@ -165,7 +156,6 @@ test_that("report_status", {
   report_status %>%
     expect_with_exception(
       args = list(year = 2018, cod = 53),
-      assert = function(df) (df %>% nrow()) > 0,
-      error = expect_errors$curl_fetch_memory
+      assert = function(df) (df %>% nrow()) > 0
     )
 })
