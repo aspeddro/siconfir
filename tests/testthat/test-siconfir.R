@@ -1,6 +1,7 @@
 expect_errors <- c(
   "Could not resolve host: apidatalake.tesouro.gov.br",
-  "Timeout was reached: [apidatalake.tesouro.gov.br] Connection timeout after"
+  "Timeout was reached: [apidatalake.tesouro.gov.br] Connection timeout after",
+  "Server error: (504) Gateway Timeout"
 )
 
 library(magrittr, include.only = "%>%")
@@ -26,7 +27,7 @@ expect_with_exception <- function(fn, args = NULL, assert) {
     error <- character()
 
     for (expect_error in expect_errors) {
-      if (startsWith(expect_error, error_message)) {
+      if (startsWith(error_message, expect_error)) {
         error <- error_message
       }
     }
