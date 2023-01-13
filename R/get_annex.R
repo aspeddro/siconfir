@@ -4,7 +4,7 @@
 #' @param verbose is a logical. Enable verbose mode. Default is \code{FALSE}
 #' @return \code{tibble}
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' get_annex()
 #' }
 #' @export

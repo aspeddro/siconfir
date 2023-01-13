@@ -21,7 +21,7 @@
 #' For more details on the parameter \code{cod} see the column \code{cod_ibge}
 #' of the function \code{\link{get_info}}
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' get_annual_acc(year = 2019, cod = 35)
 #' }
 #' @note

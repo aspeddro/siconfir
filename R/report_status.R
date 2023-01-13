@@ -7,7 +7,7 @@
 #' @param verbose is a logical. Enable verbose mode. Default is \code{FALSE}
 #' @return \code{tibble}
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' report_status(year = 2020, cod = 35)
 #' }
 #' @note
