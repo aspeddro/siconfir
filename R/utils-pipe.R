@@ -1,2 +1,2 @@
 #' @import magrittr
-utils::globalVariables(c("%>%", "."))
+utils::globalVariables(c("%>%", ".", "ente"))
