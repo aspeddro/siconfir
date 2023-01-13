@@ -31,7 +31,6 @@ expect_with_exception <- function(fn, args = NULL, assert) {
         error <- e
       }
     }
-    print(paste0(error_message, " == ", error))
     testthat::expect_equal(error, error_message)
   } else {
     testthat::expect_true(assert(result))
