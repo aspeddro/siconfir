@@ -1,7 +1,7 @@
 Type: Package
 Package: siconfir
 Title: Quick and Easy Access Tax and Accounting Data of Brazil
-Version: 2.0.2
+Version: 2.0.3
 Authors@R:
     c(person(given="Pedro",
             family="Castro", 
