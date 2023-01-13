@@ -1,6 +1,7 @@
 expect_errors <- c(
   "Could not resolve host: apidatalake.tesouro.gov.br",
-  "Timeout was reached: [apidatalake.tesouro.gov.br] Connection timeout after 10000 ms"
+  "Timeout was reached: [apidatalake.tesouro.gov.br] Connection timeout after 10000 ms",
+  "Timeout was reached: [apidatalake.tesouro.gov.br] Connection timeout after 10001 ms"
 )
 
 library(magrittr, include.only = "%>%")
@@ -30,7 +31,7 @@ expect_with_exception <- function(fn, args = NULL, assert) {
         error <- e
       }
     }
-
+    print(paste0(error_message, " == ", error))
     testthat::expect_equal(error, error_message)
   } else {
     testthat::expect_true(assert(result))
