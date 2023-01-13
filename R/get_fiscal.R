@@ -29,10 +29,10 @@
 #' For more details on the parameter \code{cod} see the column \code{cod_ibge}
 #' of the function \code{\link{get_info}}
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' get_fiscal(year = 2019, period = 1:3, cod = 35, power = "E")
 #' }
-#' \donttest{
+#' \dontrun{
 #' get_fiscal(year = 2017, period = 2, annex = 1, cod = 1)
 #' }
 #' @note

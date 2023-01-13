@@ -30,7 +30,7 @@
 #' For more details on the parameter \code{cod} see the column \code{cod_ibge}
 #' of the function \code{\link{get_info}}
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' get_budget(year = 2020, period = 1, cod = 29)
 #' }
 #' @note
