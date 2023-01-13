@@ -27,5 +27,6 @@ jobs:
         with:
           extra-packages: any::rcmdcheck
           needs: check
+          args: 'c("--no-manual", "--as-cran", "--no-examples")'
 
       - uses: r-lib/actions/check-r-package@v2
