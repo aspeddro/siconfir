@@ -1,6 +1,6 @@
 expect_errors <- c(
   "Could not resolve host: apidatalake.tesouro.gov.br",
-  "Timeout was reached: [apidatalake.tesouro.gov.br] Connection timeout after",
+  "Timeout was reached: [apidatalake.tesouro.gov.br] Connection timeout after"
 )
 
 library(magrittr, include.only = "%>%")
