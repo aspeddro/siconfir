@@ -1,107 +1,171 @@
+expect_errors <- list(
+  curl_fetch_memory = "Could not resolve host: apidatalake.tesouro.gov.br"
+)
+
+library(magrittr, include.only = "%>%")
+
+#' To test functions that might throw an error
+expect_with_exception <- function(fn, args = NULL, assert, error) {
+  params_is_null <- rlang::is_null(args)
+  result <- tryCatch(
+    if (params_is_null) {
+      rlang::inject(fn())
+    } else {
+      rlang::inject(fn(!!!args))
+    },
+    error = function(e) e
+  )
+  if (rlang::is_error(result)) {
+    error_reason <- if (params_is_null) {
+      result$message
+    } else {
+      result$parent$message
+    }
+
+    testthat::expect_equal(error_reason, error)
+  } else {
+    testthat::expect_true(assert(result))
+  }
+}
+
 test_that("find_cod for 35", {
-  expect_true(nrow(find_cod("São Paulo")) == 5)
+  find_cod("São Paulo") %>%
+    nrow() %>%
+    expect_equal(5)
 })
 
 test_that("find_cod error", {
-  expect_error(find_cod(1))
+  find_cod(1) %>%
+    expect_error()
 })
 
 test_that("get_annex", {
-  expect_true(nrow(get_annex()) > 0)
+  get_annex %>%
+    expect_with_exception(
+      assert = function(df) (df %>% nrow()) > 0,
+      error = expect_errors$curl_fetch_memory
+    )
 })
 
 test_that("get_annual_acc", {
-  expect_true(
-    nrow(get_annual_acc(
-      year = 2019,
-      cod = 17
-    )) > 0
-  )
-  expect_true(
-    nrow(get_annual_acc(year = 2018, cod = 35)) > 0
-  )
-  expect_true(
-    nrow(get_annual_acc(
-      year = 2017,
-      cod = 11,
-      annex = c("DCA-Anexo I-C", "DCA-Anexo I-D")
-    )) > 0
-  )
+  get_annual_acc %>%
+    expect_with_exception(
+      args = list(year = 2019, cod = 17),
+      assert = function(df) (df %>% nrow()) > 0,
+      error = expect_errors$curl_fetch_memory
+    )
+
+  get_annual_acc %>%
+    expect_with_exception(
+      args = list(year = 2018, cod = 35),
+      assert = function(df) (df %>% nrow()) > 0,
+      error = expect_errors$curl_fetch_memory
+    )
+
+  get_annual_acc %>%
+    expect_with_exception(
+      args = list(
+        year = 2017,
+        cod = 11,
+        annex = c("DCA-Anexo I-C", "DCA-Anexo I-D")
+      ),
+      assert = function(df) (df %>% nrow()) > 0,
+      error = expect_errors$curl_fetch_memory
+    )
 })
 
 test_that("get_budget", {
-  expect_true(
-    nrow(get_budget(
-      year = 2020,
-      period = 1,
-      annex = "01",
-      cod = 29,
-      sphere = "E"
-    )) > 0
-  )
+  get_budget %>%
+    expect_with_exception(
+      args = list(
+        year = 2020,
+        period = 1,
+        annex = "01",
+        cod = 29,
+        sphere = "E"
+      ),
+      assert = function(df) (df %>% nrow()) > 0,
+      error = expect_errors$curl_fetch_memory
+    )
 })
 
 test_that("get_fiscal", {
-  expect_true(
-    nrow(get_fiscal(
-      year = 2020,
-      period = 1,
-      cod = 1,
-      power = "E"
-    )) > 0
-  )
+  get_fiscal %>%
+    expect_with_exception(
+      args = list(
+        year = 2020,
+        period = 1,
+        cod = 1,
+        power = "E"
+      ),
+      assert = function(df) (df %>% nrow()) > 0,
+      error = expect_errors$curl_fetch_memory
+    )
+
   expect_error(get_fiscal(year = 2020, period = 4))
 })
 
 test_that("get_info", {
-  expect_true(nrow(get_info()) > 0)
+  get_info %>%
+    expect_with_exception(
+      assert = function(df) (df %>% nrow()) == 5597,
+      error = expect_errors$curl_fetch_memory
+    )
 })
 
 test_that("msc_budget", {
-  expect_true(
-    nrow(
-      msc_budget(
+  msc_budget %>%
+    expect_with_exception(
+      args = list(
         year = 2020,
         month = 1,
         cod = 1,
         matrix_type = "MSCC",
         class = 5,
         value = "period_change"
-      )
-    ) > 0
-  )
+      ),
+      assert = function(df) (df %>% nrow()) > 0,
+      error = expect_errors$curl_fetch_memory
+    )
 })
 
 test_that("msc_control", {
-  expect_true(
-    nrow(
-      msc_control(
+  msc_control %>%
+    expect_with_exception(
+      args = list(
         year = 2020,
         month = 1,
         cod = 53,
         matrix_type = "MSCC",
         class = 7,
         value = "ending_balance"
-      )
-    ) > 0
-  )
+      ),
+      assert = function(df) (df %>% nrow()) > 0,
+      error = expect_errors$curl_fetch_memory
+    )
 })
 
 test_that("msc_equity", {
-  expect_true(
-    nrow(
-      msc_equity(
+  msc_equity %>%
+    expect_with_exception(
+      args = list(
         year = 2020,
         month = 1:2,
         cod = 17,
         matrix_type = "MSCC",
         class = 1,
         value = "beginning_balance"
-      )
-    ) > 0
-  )
+      ),
+      assert = function(df) (df %>% nrow()) > 0,
+      error = expect_errors$curl_fetch_memory
+    )
 })
 
 test_that("report_status", {
-  expect_true(nrow(report_status(year = 2018, cod = 53)) > 0)
+  report_status %>%
+    expect_with_exception(
+      args = list(year = 2018, cod = 53),
+      assert = function(df) (df %>% nrow()) > 0,
+      error = expect_errors$curl_fetch_memory
+    )
 })
