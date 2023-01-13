@@ -1,6 +1,6 @@
 expect_errors <- c(
-  curl_fetch_memory = "Could not resolve host: apidatalake.tesouro.gov.br",
-  time_out = "Timeout was reached: [apidatalake.tesouro.gov.br] Connection timeout after 10000 ms"
+  "Could not resolve host: apidatalake.tesouro.gov.br",
+  "Timeout was reached: [apidatalake.tesouro.gov.br] Connection timeout after 10000 ms"
 )
 
 library(magrittr, include.only = "%>%")
@@ -17,13 +17,21 @@ expect_with_exception <- function(fn, args = NULL, assert) {
     error = function(e) e
   )
   if (rlang::is_error(result)) {
-    error_reason <- if (params_is_null) {
+    error_message <- if (params_is_null) {
       result$message
     } else {
       result$parent$message
     }
 
-    testthat::expect_true(error_reason %in% expect_errors)
+    error <- character()
+
+    for (e in expect_errors) {
+      if (e == error_message) {
+        error <- e
+      }
+    }
+
+    testthat::expect_equal(error, error_message)
   } else {
     testthat::expect_true(assert(result))
   }
