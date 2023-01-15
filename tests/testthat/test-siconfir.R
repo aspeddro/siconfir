@@ -24,7 +24,7 @@ expect_with_exception <- function(fn, args = NULL, assert) {
       result$parent$message
     }
 
-    error <- character()
+    error <- NULL
 
     for (expect_error in expect_errors) {
       if (startsWith(error_message, expect_error)) {
