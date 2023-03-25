@@ -8,14 +8,6 @@ This package is available for [**Python**](https://github.com/aspeddro/siconfipy
 
 ## Installation
 
-Install from [CRAN](https://cran.r-project.org/package=siconfir):
-
-```r
-install.packages("siconfir")
-```
-
-or the development version from GitHub:
-
 ```r
 install.packages("remotes")
 remotes::install_github("aspeddro/siconfir")
